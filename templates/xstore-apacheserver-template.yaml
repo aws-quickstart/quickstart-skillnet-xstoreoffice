@@ -93,7 +93,7 @@ Parameters:
   SSLCertificateArn:
     Type: String
     Description: Server certificate ARN of your existing Account and Virtual Private Cloud (VPC)
-    ConstraintDescription: must be the VPC Id of an existing Virtual Private Cloud.
+    ConstraintDescription: must be the VPC Id of an existing Virtual Private Cloud.    
 Mappings:
   RegionMap:
     us-east-1:
@@ -158,7 +158,7 @@ Resources:
             echo "environment = xcenter_webserver" >> /etc/puppetlabs/puppet/puppet.conf
             echo "runinterval = 1h" >> /etc/puppetlabs/puppet/puppet.conf
             
-            /opt/puppetlabs/bin/puppet agent -t            
+            #/opt/puppetlabs/bin/puppet agent -t            
   ApacheServerGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
@@ -173,7 +173,11 @@ Resources:
         -
           Key: Name
           PropagateAtLaunch: true
-          Value: !Join [ " - ", [ !Ref StackPrefix, "Apache Server" ] ]          
+          Value: !Join [ " - ", [ !Ref StackPrefix, "Apache Server" ] ]
+        -
+          Key: LCM_TAG
+          PropagateAtLaunch: true
+          Value: XSTORE          
       TargetGroupARNs:
       - Ref: ALBTargetGroup  
   ApplicationLoadBalancer:
@@ -209,7 +213,7 @@ Resources:
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 5
-      Name: apache-alb-tg
+      Name: apache-alb-targetgroup
       TargetGroupAttributes:
       - Key: stickiness.enabled
         Value: true
@@ -217,3 +221,10 @@ Resources:
         Value: 600
       VpcId:
         Ref: VpcId  
+Outputs:
+  ELBDNSName:
+    Description: ELB DNS Name
+    Value:
+      Fn::GetAtt:
+      - ApplicationLoadBalancer
+      - DNSName
