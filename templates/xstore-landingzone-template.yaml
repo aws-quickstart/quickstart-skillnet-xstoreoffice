@@ -55,6 +55,9 @@ Resources:
       CidrBlock: !Ref VpcCIDR
       EnableDnsHostnames: true
       EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: !Ref 'AWS::StackName'
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
@@ -203,7 +206,7 @@ Resources:
   XStoreManagedPolicy: 
     Type: AWS::IAM::ManagedPolicy
     Properties: 
-      ManagedPolicyName: XStore_Lifecycle
+      ManagedPolicyName: XStore_DLM
       Description: "Policy for XStore backup Lifecycle Management"
       Path: "/"
       PolicyDocument: 
@@ -241,7 +244,7 @@ Resources:
               Service: 
                 - "dlm.amazonaws.com"
       Path: /
-      RoleName: XStore_Lifecycle
+      RoleName: XStore_DLM
   XStoreLifecyclePolicy:
     Type: "AWS::DLM::LifecyclePolicy"
     Properties:
@@ -280,7 +283,7 @@ Resources:
   XStoreS3Policy: 
     Type: AWS::IAM::ManagedPolicy
     Properties: 
-      ManagedPolicyName: xstore_ec2_s3_policy
+      ManagedPolicyName: xstore_s3_policy
       Description: "Policy for XStore S3 access"
       Path: "/"
       PolicyDocument: 
@@ -294,7 +297,7 @@ Resources:
   XStoreCloudWatchPolicy: 
     Type: AWS::IAM::ManagedPolicy
     Properties: 
-      ManagedPolicyName: xstore_ec2_cloudwatch_policy
+      ManagedPolicyName: xstore_cloudwatch_policy
       Description: "Policy for XStore cloud watch access"
       Path: "/"
       PolicyDocument: 
@@ -324,11 +327,37 @@ Resources:
               Service: 
                 - "ec2.amazonaws.com"
       Path: /
-      RoleName: xstore_ec2_instance_role
+      RoleName: xstore_instance_role
   XStoreProfile: 
     Type: "AWS::IAM::InstanceProfile"
     Properties: 
-      InstanceProfileName: xstore_ec2_instance
+      InstanceProfileName: xstore_instance_profile
       Path: "/"
       Roles:  
         - Ref: XStoreEC2InstanceRole
+Outputs:
+  XStoreVpcID:
+    Value: !Ref 'VPC'
+    Description: VPC ID
+    Export:
+      Name: !Sub '${AWS::StackName}-XStoreVPCID'
+  XStoreSubnet1ID:
+    Value: !Ref 'PrivateSubnet1'
+    Description: Private Subnet 1 ID
+    Export:
+      Name: !Sub '${AWS::StackName}-XStorePrivateSubnet1ID'
+  XStoreSubnet2ID:
+    Value: !Ref 'PrivateSubnet2'
+    Description: Private Subnet 2 ID
+    Export:
+      Name: !Sub '${AWS::StackName}-XStorePrivateSubnet2ID'
+  XStoreSecurityGroup:
+    Value: !Ref 'SGBase'
+    Description: Security Group ID
+    Export:
+      Name: !Sub '${AWS::StackName}-XStoreSecurityGroupID'
+  XStoreInstanceProfile:
+    Value: !Ref 'XStoreProfile'
+    Description: XStore Instance Profile ID
+    Export:
+      Name: !Sub '${AWS::StackName}-XStoreInstanceProfile'

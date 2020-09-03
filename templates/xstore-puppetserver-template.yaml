@@ -9,8 +9,7 @@ Metadata:
           default: Environment Configuration
         Parameters:
         - EnvironmentSize
-        - VpcId
-        - Subnets
+        - Subnet
         - SecurityGroups
       - Label:
           default: Amazon EC2 Configuration
@@ -26,9 +25,7 @@ Metadata:
     ParameterLabels:
       EnvironmentSize:
         default: Environment Size
-      VpcId:
-        default: VPC ID
-      Subnets:
+      Subnet:
         default: Private Subnet ID(s)
       SecurityGroups:
         default: Security Group ID(s)
@@ -51,12 +48,8 @@ Parameters:
       - Medium
       - Large
     Description: Select Environment Size (S,M,L)
-  VpcId:
-    Type: AWS::EC2::VPC::Id
-    Description: VpcId of your existing Virtual Private Cloud (VPC)
-    ConstraintDescription: must be the VPC Id of an existing Virtual Private Cloud.
-  Subnets:
-    Type: List<AWS::EC2::Subnet::Id>
+  Subnet:
+    Type: AWS::EC2::Subnet::Id
     Description: The list of SubnetIds in your Virtual Private Cloud (VPC)
     ConstraintDescription: must be a list of at least two existing subnets associated
       with at least two different availability zones. They should be residing in the
@@ -84,7 +77,7 @@ Parameters:
     Default: "puppet.skillnetaws.com"
   IamInstanceProfile:
     Type: String
-    Default: xstore_ec2_instance
+    Default: xstore_instance_profile
     Description: must be the IAM Instance Profile of an existing Virtual Private Cloud.
 Mappings:
   RegionMap:
@@ -93,37 +86,35 @@ Mappings:
   InstanceSize:
     Small:
       "EC2" : "c3.large"
-      "MinSize" : "1"
-      "MaxSize" : "1"
-      "DesireSize" : "1"
-      "EbsVolumeSize" : "25"
+      "EbsVolumeSize" : "100"
     Medium:
       "EC2" : "c3.xlarge"
-      "MinSize" : "1"
-      "MaxSize" : "1"
-      "DesireSize" : "1"
-      "EbsVolumeSize" : "50"
+      "EbsVolumeSize" : "200"
     Large:
       "EC2" : "c3.2xlarge"
-      "MinSize" : "1"
-      "MaxSize" : "1"
-      "DesireSize" : "1"  
-      "EbsVolumeSize" : "100"
+      "EbsVolumeSize" : "250"
 Resources:
-  LaunchConfig:
-    Type: AWS::AutoScaling::LaunchConfiguration
+  PuppetServer:
+    Type: AWS::EC2::Instance
     Properties:
       KeyName: !Ref KeyPairName
       InstanceType: !FindInMap [InstanceSize, !Ref EnvironmentSize, EC2]
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", OEL7AMI]
       IamInstanceProfile: !Ref IamInstanceProfile
+      SubnetId: !Ref Subnet 
+      SecurityGroupIds: !Ref SecurityGroups      
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
           Ebs:
             VolumeSize: !FindInMap [InstanceSize, !Ref EnvironmentSize, EbsVolumeSize]
             VolumeType: "gp2"
-      SecurityGroups: 
-        Ref: SecurityGroups
+      Tags:
+        -
+          Key: Name
+          Value: !Join [ " - ", [ !Ref StackPrefix, "Puppet Server" ] ]
+        -
+          Key: LCM_TAG
+          Value: XSTORE
       UserData:
         "Fn::Base64":
           !Sub |
@@ -141,21 +132,10 @@ Resources:
             
             #Install puppet agent
             rpm -Uvh -httpproxy "${ProxyServer}"  https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
-            yum -y install puppetserver
-            
-  PuppetServerGroup:
-    Type: AWS::AutoScaling::AutoScalingGroup
-    Properties:
-      VPCZoneIdentifier:
-        Ref: Subnets
-      LaunchConfigurationName:
-        Ref: LaunchConfig
-      MinSize: !FindInMap [InstanceSize, !Ref EnvironmentSize, MinSize]
-      MaxSize: !FindInMap [InstanceSize, !Ref EnvironmentSize, MaxSize]
-      DesiredCapacity: !FindInMap [InstanceSize, !Ref EnvironmentSize, DesireSize]
-      Tags:
-        -
-          Key: Name
-          PropagateAtLaunch: true
-          Value: !Join [ " - ", [ !Ref StackPrefix, "Puppet Server" ] ]          
-      
+            yum -y install puppetserver      
+Outputs:
+  PupperServerIP:
+    Description: Puppet Server Private IP address
+    Value: !GetAtt PuppetServer.PrivateIp
+    Export:
+      Name: !Sub "${AWS::StackName}-PrivateIp"      
