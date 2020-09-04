@@ -218,7 +218,7 @@ Parameters:
     - 1024
     - 2048
     - 4096
-    Default: '100'
+    Default: 100
     Description: The size of the database in gigabytes (GiB).
     Type: Number
   DBInstanceClass:
@@ -357,7 +357,7 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-landingzone.template.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-landingzone.template.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
@@ -370,24 +370,24 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-puppetserver.template.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-puppetserver.template.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
         EnvironmentSize: !Ref EnvironmentSize      
         Subnet:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreSubnet1ID
         SecurityGroups:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreSecurityGroup
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
         ProxyServer: !Ref ProxyServer
         IamInstanceProfile:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreInstanceProfile
         PuppetServerFQDN: !Ref PuppetServerFQDN
@@ -396,17 +396,17 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-oracledb.template.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-oracledb.template.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
         VpcId:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreVpcID
-        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ] 
+        Subnets: !Join [ ",", [ !GetAtt [ LandingZone, Outputs.XStoreSubnet1ID ], !GetAtt [ LandingZone, Outputs.XStoreSubnet2ID ] ] ] 
         SecurityGroups: 
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreSecurityGroup
         StackPrefix: !Ref StackPrefix
@@ -425,29 +425,29 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-apacheserver.template.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-apacheserver.template.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:     
         EnvironmentSize: !Ref EnvironmentSize
         VpcId:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreVpcID
-        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
+        Subnets: !Join [ ",", [ !GetAtt [ LandingZone, Outputs.XStoreSubnet1ID ], !GetAtt [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
         SecurityGroups:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreSecurityGroup
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
         PuppetServerIP:
-          Fn::GetAtt:
+          !GetAtt
           - PuppetServer
           - Outputs.PupperServerIP
         ProxyServer: !Ref ProxyServer
         IamInstanceProfile:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreInstanceProfile
         SSLCertificateArn: !Ref DeployServerSSLCertificateArn
@@ -456,35 +456,35 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-weblogicserver.template.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-weblogicserver.template.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:     
         EnvironmentSize: !Ref EnvironmentSize
         VpcId:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreVpcID
-        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
+        Subnets: !Join [ ",", [ !GetAtt [ LandingZone, Outputs.XStoreSubnet1ID ], !GetAtt [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
         SecurityGroups:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreSecurityGroup
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
         PuppetServerIP:
-          Fn::GetAtt:
+          !GetAtt
           - PuppetServer
           - Outputs.PupperServerIP
         ProxyServer: !Ref ProxyServer
         IamInstanceProfile:
-          Fn::GetAtt:
+          !GetAtt
           - LandingZone
           - Outputs.XStoreInstanceProfile
         SSLCertificateArn: !Ref XAdminSSLCertificateArn
         EFSVolumeName: !Ref EFSVolumeName
         EFSMountPoint: !Ref EFSMountPoint
         DeployServerELB: 
-          Fn::GetAtt:
+          !GetAtt
           - ApacheServer
           - Outputs.ELBDNSName

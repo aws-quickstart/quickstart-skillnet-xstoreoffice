@@ -106,7 +106,7 @@ Parameters:
     - 1024
     - 2048
     - 4096
-    Default: '100'
+    Default: 100
     Description: The size of the database in gigabytes (GiB).
     Type: Number
   DBInstanceClass:

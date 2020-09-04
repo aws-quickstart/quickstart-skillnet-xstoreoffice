@@ -26,7 +26,7 @@ Metadata:
         - PuppetServerIP        
         - ProxyServer
         - SSLCertificateArn
-        - DeployServerELB
+#        - DeployServerELB
       - Label:
           default: Storage Configuration
         Parameters:
@@ -57,8 +57,8 @@ Metadata:
         default: EFS Volume Name
       EFSMountPoint:
         default: EFS Volume Mount Point
-      DeployServerELB:
-        default: Deployment Server Load Balancer URL
+#      DeployServerELB:
+#        default: Deployment Server Load Balancer URL
 Parameters:
   EnvironmentSize:
     Type: String
@@ -119,9 +119,9 @@ Parameters:
     Type: String
     MinLength: '1'
     Default: "/home/oracle"
-  DeployServerELB:
-    Type: String
-    Description: Deployment Server Load Balancer URL
+#  DeployServerELB:
+#    Type: String
+#    Description: Deployment Server Load Balancer URL
 Mappings:
   RegionMap:
     us-east-1:
