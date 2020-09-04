@@ -7,11 +7,3 @@ The Quick Start offers two deployment options:
 
 - Deploying Oracle XStore Office into a new virtual private cloud (VPC) on AWS
 - Deploying Oracle XStore Office into an existing VPC on AWS
-
-![Quick Start architecture for Oracle XStore Office on AWS]
-
-For architectural details, best practices, step-by-step instructions, and customization options, see the 
-[deployment guide]
-
-To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo.
-If you'd like to submit code for this Quick Start, please review the [AWS Quick Start Contributor's Kit](https://aws-quickstart.github.io/)
