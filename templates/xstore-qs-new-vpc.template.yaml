@@ -3,7 +3,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This template creates a VPC infrastructure for Oracle XStore Application deployment on AWS.
   This template creates VPC, 2 Private Subnets, All required Security Groups, VPC End points for S3 bucket
   and Monitoring, Data lifecycle Manager for instance backup, Instance Profile for S3 and monitoring access.
+  (qs-1r3td6h2i)
 Metadata:
+  QuickStartDocumentation:
+    EntrypointName: "Launch into a new VPC"
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
