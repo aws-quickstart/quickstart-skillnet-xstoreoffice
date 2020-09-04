@@ -13,17 +13,13 @@ Metadata:
           - Subnet1ID
           - Subnet2ID
       - Label:
-          default: Backup Configuration
-        Parameters:
-        - DLMCrossRegionCopy
-      - Label:
           default: AWS Quick Start configuration
         Parameters:
           - QSS3BucketName
           - QSS3BucketRegion
           - QSS3KeyPrefix
       - Label:
-          default: XStore environment configuration
+          default: XStore Office Environment configuration
         Parameters:
           - EnvironmentSize
           - KeyPairName
@@ -50,13 +46,17 @@ Metadata:
           - Compatible
           - EngineVersion
           - LicenseModel
+      - Label:
+          default: Backup configuration
+        Parameters:
+          - DLMCrossRegionCopy
     ParameterLabels:
       UserSpecifiedVPCId:
-        default: The VPC where to deploy XStoreOffice in
+        default: VPC ID
       Subnet1ID:
-        default: The first private subnet
+        default: First Private Subnet ID
       Subnet2ID:
-        default: A second private subnet
+        default: Second Private Subnet ID
       DLMCrossRegionCopy:
         default: DLM Cross Region Name
       QSS3BucketName:
@@ -76,9 +76,9 @@ Metadata:
       PuppetServerFQDN:
         default: Puppet Server FQDN
       DeployServerSSLCertificateArn:
-        default: Deployment server SSL Certificate ARN
+        default: SSL Certificate ARN for Deployment Server ALB
       XAdminSSLCertificateArn:
-        default: XAdmin server SSL Certificate ARN
+        default: SSL Certificate ARN for XAdmin server ALB
       EFSVolumeName:
         default: EFS Volume Name
       EFSMountPoint:
@@ -86,7 +86,7 @@ Metadata:
       DBName:
         default: DB Name
       Admin:
-        default: Admin User
+        default: Admin User 
       AdminPassword:
         default: Admin Password
       DBAllocatedStorage:
@@ -106,12 +106,15 @@ Metadata:
 Parameters:
   UserSpecifiedVPCId:
     Type: 'AWS::EC2::VPC::Id'
+    Description: The VPC ID where to deploy XStore Office in.
   Subnet1ID:
     Type: 'AWS::EC2::Subnet::Id'
+    Description: The First Private Subnet ID.  
   Subnet2ID:
     Type: 'AWS::EC2::Subnet::Id'
+    Description: The Second Private Subnet ID. Select Subnet ID with different AZ that you selected from the First Private Subnet ID.
   DLMCrossRegionCopy:
-    Description: DLM for cross region copy  
+    Description: The Cross Region to copy the EC2 instance snapshots for backup. 
     Type: String
     Default: us-east-2
   QSS3BucketName:
@@ -137,9 +140,9 @@ Parameters:
       - Small
       - Medium
       - Large
-    Description: Select Environment Size (S,M,L)
+    Description: The XStore Office Environment Size (S,M,L).
   KeyPairName:
-    Description: The EC2 Key Pair to allow SSH access to the instances
+    Description: EC2 key pair name.
     Type: AWS::EC2::KeyPair::KeyName
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   StackPrefix:
@@ -147,33 +150,35 @@ Parameters:
     MinLength: "1"
     MaxLength: "20"
     AllowedPattern: "[a-zA-Z0-9]*"
-    Description: The prefix to all the associated resources in the stack
-    Default: XStore
+    Description: The prefix name to all the associated resources in the stack.
+    Default: XStoreOffice
   ProxyServer:
     Type: String
     Default: "http://192.168.50.197:3128"
+    Description: The proxy server URL to have internet access.
   PuppetServerFQDN:
     Type: String
     Default: "puppet.skillnetaws.com"
+    Description: Assign Fully Qualified Domain Name for Puppet Server.
   DeployServerSSLCertificateArn:
     Type: String
-    Description: Deployment Server certificate ARN of your existing Account
+    Description: The SSL certificate ARN for Deployment Server Load Balancer.
   XAdminSSLCertificateArn:
     Type: String
-    Description: XAdmin Server certificate ARN of your existing Account
+    Description: The SSL certificate ARN for XAdmin Application Load Balancer.
   EFSVolumeName:
-    Description: The name to be used for the EFS volume
+    Description: The name to be used for the EFS volume.
     Type: String
     MinLength: '1'
     Default: XStoreOfficeWlsEFS
   EFSMountPoint:
-    Description: The Linux mount point for the EFS volume
+    Description: The Linux mount point for the EFS volume.
     Type: String
     MinLength: '1'
     Default: "/home/oracle"
   DBName:
     Default: orcldb
-    Description: The Oracle DBName (SID) name
+    Description: The Oracle DBName (SID) name.
     Type: String
     MinLength: '1'
     MaxLength: '64'
@@ -181,7 +186,7 @@ Parameters:
     ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
   Admin:
     Default: xstore
-    Description: The Oracle database admin account username
+    Description: The Oracle database admin account username.
     Type: String
     MinLength: '1'
     MaxLength: '16'
@@ -190,7 +195,7 @@ Parameters:
   AdminPassword:
     Default: Test1234
     NoEcho: 'true'
-    Description: The Oracle database admin account password
+    Description: The Oracle database admin account password.
     Type: String
     MinLength: '8'
     MaxLength: '41'
@@ -229,7 +234,7 @@ Parameters:
     - oracle-se2 
     ConstraintDescription: Must select a valid Oracle Edition.
     Default: oracle-ee
-    Description: Select Oracle Edition.
+    Description: The Oracle Edition.
     Type: String
   Family:
     AllowedValues:
@@ -255,7 +260,7 @@ Parameters:
     - oracle-se2-19.0    
     ConstraintDescription: Must select a valid Oracle family.
     Default: oracle-ee-12.1
-    Description: Select Oracle Family Engine.
+    Description: The Oracle Family Engine.
     Type: String
   Compatible:
     AllowedValues:
@@ -265,7 +270,7 @@ Parameters:
     - 19.0.0.0
     ConstraintDescription: Must select a valid Oracle compatible version to family.
     Default: 12.1.0.2
-    Description: Oracle Family compatible version Ex 12.1.0.2
+    Description: The Oracle Family compatible version Ex 12.1.0.2
     Type: String
   EngineVersion:
     AllowedValues:
@@ -325,7 +330,7 @@ Parameters:
     - 19.0.0.0.ru-2019-10.rur-2019-10.r1    
     ConstraintDescription: Must select a valid Oracle compatible version to family.
     Default: 12.1.0.2.v7
-    Description: Oracle Family compatible version Ex 12.1.0.2.v7
+    Description: The Oracle Family compatible version Ex 12.1.0.2.v7
     Type: String
   LicenseModel:
     AllowedValues:
@@ -333,7 +338,7 @@ Parameters:
     - bring-your-own-license
     ConstraintDescription: Must select a valid Oracle license to be use.
     Default: bring-your-own-license
-    Description: Select Oracle License type.
+    Description: The Oracle License type.
     Type: String
 Conditions:
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
