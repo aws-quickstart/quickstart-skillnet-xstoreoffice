@@ -1,0 +1,481 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This template creates a VPC infrastructure for Oracle XStore Application deployment on AWS.
+  This template creates VPC, 2 Private Subnets, All required Security Groups, VPC End points for S3 bucket
+  and Monitoring, Data lifecycle Manager for instance backup, Instance Profile for S3 and monitoring access.
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: Network Configuration
+        Parameters:
+          - UserSpecifiedVPCId
+          - Subnet1ID
+          - Subnet2ID
+      - Label:
+          default: AWS Quick Start configuration
+        Parameters:
+          - QSS3BucketName
+          - QSS3BucketRegion
+          - QSS3KeyPrefix
+      - Label:
+          default: XStore Office Environment configuration
+        Parameters:
+          - EnvironmentSize
+          - KeyPairName
+          - StackPrefix
+          - ProxyServer
+          - PuppetServerFQDN
+          - DeployServerSSLCertificateArn
+          - XAdminSSLCertificateArn
+      - Label:
+          default: Weblogic Cluster Storage configuration
+        Parameters:  
+          - EFSVolumeName
+          - EFSMountPoint
+      - Label:
+          default: Oracle Database configuration
+        Parameters:
+          - DBName
+          - Admin
+          - AdminPassword
+          - DBAllocatedStorage
+          - DBInstanceClass
+          - OracleEdition
+          - Family 
+          - Compatible
+          - EngineVersion
+          - LicenseModel
+      - Label:
+          default: Backup configuration
+        Parameters:
+          - DLMCrossRegionCopy
+    ParameterLabels:
+      UserSpecifiedVPCId:
+        default: VPC ID
+      Subnet1ID:
+        default: First Private Subnet ID
+      Subnet2ID:
+        default: Second Private Subnet ID
+      DLMCrossRegionCopy:
+        default: DLM Cross Region Name
+      QSS3BucketName:
+        default: Quick Start S3 bucket
+      QSS3BucketRegion:
+        default: Quick Start S3 bucket Region
+      QSS3KeyPrefix:
+        default: Quick Start S3 key prefix
+      EnvironmentSize:
+        default: Environment Size
+      KeyPairName:
+        default: Key Pair Name
+      StackPrefix:
+        default: Stack Name Prefix
+      ProxyServer:
+        default: Proxy Server URL
+      PuppetServerFQDN:
+        default: Puppet Server FQDN
+      DeployServerSSLCertificateArn:
+        default: SSL Certificate ARN for Deployment Server ALB
+      XAdminSSLCertificateArn:
+        default: SSL Certificate ARN for XAdmin server ALB
+      EFSVolumeName:
+        default: EFS Volume Name
+      EFSMountPoint:
+        default: EFS Volume Mount Point
+      DBName:
+        default: DB Name
+      Admin:
+        default: Admin User 
+      AdminPassword:
+        default: Admin Password
+      DBAllocatedStorage:
+        default: DB Allocated Storage
+      DBInstanceClass:
+        default: DB Instance Class
+      OracleEdition:
+        default: Oracle Edition
+      Family:
+        default: Oracle Family
+      Compatible:
+        default: Oracle Compatible
+      EngineVersion:
+        default: Oracle Engine Version
+      LicenseModel:
+        default: Oracle License Model
+Parameters:
+  UserSpecifiedVPCId:
+    Type: 'AWS::EC2::VPC::Id'
+    Description: The VPC ID where to deploy XStore Office in.
+  Subnet1ID:
+    Type: 'AWS::EC2::Subnet::Id'
+    Description: The First Private Subnet ID.  
+  Subnet2ID:
+    Type: 'AWS::EC2::Subnet::Id'
+    Description: The Second Private Subnet ID. Select Subnet ID with different AZ that you selected from the First Private Subnet ID.
+  DLMCrossRegionCopy:
+    Description: The Cross Region to copy the EC2 instance snapshots for backup. 
+    Type: String
+    Default: us-east-2
+  QSS3BucketName:
+    AllowedPattern: "^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$"
+    ConstraintDescription: "Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-)."
+    Default: skillnet-aws-isv-workload-migration
+    Description: "S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-)."
+    Type: String
+  QSS3BucketRegion:
+    Default: 'us-east-1'
+    Description: "AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. If you use your own bucket, specify that value."
+    Type: String
+  QSS3KeyPrefix:
+    AllowedPattern: "^[0-9a-zA-Z-/]*$"
+    ConstraintDescription: "Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/)."
+    Default: xstore-quickstart/
+    Description: "S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/)."
+    Type: String
+  EnvironmentSize:
+    Type: String
+    Default: Small
+    AllowedValues:
+      - Small
+      - Medium
+      - Large
+    Description: The XStore Office Environment Size (S,M,L).
+  KeyPairName:
+    Description: EC2 key pair name.
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  StackPrefix:
+    Type: String
+    MinLength: "1"
+    MaxLength: "20"
+    AllowedPattern: "[a-zA-Z0-9]*"
+    Description: The prefix name to all the associated resources in the stack.
+    Default: XStoreOffice
+  ProxyServer:
+    Type: String
+    Default: "http://192.168.50.197:3128"
+    Description: The proxy server URL to have internet access.
+  PuppetServerFQDN:
+    Type: String
+    Default: "puppet.skillnetaws.com"
+    Description: Assign Fully Qualified Domain Name for Puppet Server.
+  DeployServerSSLCertificateArn:
+    Type: String
+    Description: The SSL certificate ARN for Deployment Server Load Balancer.
+  XAdminSSLCertificateArn:
+    Type: String
+    Description: The SSL certificate ARN for XAdmin Application Load Balancer.
+  EFSVolumeName:
+    Description: The name to be used for the EFS volume.
+    Type: String
+    MinLength: '1'
+    Default: XStoreOfficeWlsEFS
+  EFSMountPoint:
+    Description: The Linux mount point for the EFS volume.
+    Type: String
+    MinLength: '1'
+    Default: "/home/oracle"
+  DBName:
+    Default: orcldb
+    Description: The Oracle DBName (SID) name.
+    Type: String
+    MinLength: '1'
+    MaxLength: '64'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  Admin:
+    Default: xstore
+    Description: The Oracle database admin account username.
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  AdminPassword:
+    Default: Test1234
+    NoEcho: 'true'
+    Description: The Oracle database admin account password.
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  DBAllocatedStorage:
+    ConstraintDescription: must be between 100 and 4096 GiB.
+    AllowedValues:
+    - 100
+    - 500
+    - 1024
+    - 2048
+    - 4096
+    Default: '100'
+    Description: The size of the database in gigabytes (GiB).
+    Type: Number
+  DBInstanceClass:
+    AllowedValues:
+    - db.m3.large
+    - db.m3.xlarge
+    - db.m3.2xlarge
+    - db.m4.2xlarge
+    - db.r4.large
+    - db.r4.16xlarge
+    - db.r4.8xlarge
+    - db.r4.4xlarge
+    ConstraintDescription: Must select a valid database instance type.
+    Default: db.r4.large
+    Description: The name of the compute and memory capacity class of the DB instance.
+    Type: String
+  OracleEdition:
+    AllowedValues:
+    - oracle-ee
+    - oracle-se
+    - oracle-se1
+    - oracle-se2 
+    ConstraintDescription: Must select a valid Oracle Edition.
+    Default: oracle-ee
+    Description: The Oracle Edition.
+    Type: String
+  Family:
+    AllowedValues:
+    - oracle-ee-11.2
+    - oracle-ee-12.1
+    - oracle-ee-12.2
+    - oracle-ee-18.0
+    - oracle-ee-19.0
+    - oracle-se-11.2
+    - oracle-se-12.1
+    - oracle-se-12.2
+    - oracle-se-18.0
+    - oracle-se-19.0
+    - oracle-se1-11.2
+    - oracle-se1-12.1
+    - oracle-se1-12.2
+    - oracle-se1-18.0
+    - oracle-se1-19.0
+    - oracle-se2-11.2
+    - oracle-se2-12.1
+    - oracle-se2-12.2
+    - oracle-se2-18.0
+    - oracle-se2-19.0    
+    ConstraintDescription: Must select a valid Oracle family.
+    Default: oracle-ee-12.1
+    Description: The Oracle Family Engine.
+    Type: String
+  Compatible:
+    AllowedValues:
+    - 12.1.0.2
+    - 12.2.0.1
+    - 18.0.0.0
+    - 19.0.0.0
+    ConstraintDescription: Must select a valid Oracle compatible version to family.
+    Default: 12.1.0.2
+    Description: The Oracle Family compatible version Ex 12.1.0.2
+    Type: String
+  EngineVersion:
+    AllowedValues:
+    - 11.2.0.4.v1
+    - 11.2.0.4.v2
+    - 11.2.0.4.v3
+    - 11.2.0.4.v4
+    - 11.2.0.4.v5
+    - 11.2.0.4.v6
+    - 11.2.0.4.v7
+    - 11.2.0.4.v8
+    - 11.2.0.4.v9
+    - 11.2.0.4.v10
+    - 11.2.0.4.v11
+    - 11.2.0.4.v12
+    - 11.2.0.4.v13
+    - 11.2.0.4.v14
+    - 11.2.0.4.v15
+    - 11.2.0.4.v16
+    - 11.2.0.4.v17
+    - 11.2.0.4.v18
+    - 11.2.0.4.v19
+    - 11.2.0.4.v20
+    - 11.2.0.4.v21
+    - 11.2.0.4.v22
+    - 11.2.0.4.v23
+    - 12.1.0.2.v1
+    - 12.1.0.2.v2
+    - 12.1.0.2.v3
+    - 12.1.0.2.v4
+    - 12.1.0.2.v5
+    - 12.1.0.2.v6
+    - 12.1.0.2.v7
+    - 12.1.0.2.v8
+    - 12.1.0.2.v9
+    - 12.1.0.2.v10
+    - 12.1.0.2.v11
+    - 12.1.0.2.v12
+    - 12.1.0.2.v13
+    - 12.1.0.2.v14
+    - 12.1.0.2.v15
+    - 12.1.0.2.v16
+    - 12.1.0.2.v17
+    - 12.1.0.2.v18
+    - 12.1.0.2.v19
+    - 12.2.0.1.ru-2018-10.rur-2018-10.r1
+    - 12.2.0.1.ru-2019-01.rur-2019-01.r1
+    - 12.2.0.1.ru-2019-04.rur-2019-04.r1
+    - 12.2.0.1.ru-2019-07.rur-2019-07.r1
+    - 12.2.0.1.ru-2019-10.rur-2019-10.r1
+    - 12.2.0.1.ru-2020-01.rur-2020-01.r1
+    - 18.0.0.0.ru-2020-01.rur-2020-01.r1
+    - 18.0.0.0.ru-2019-07.rur-2019-07.r1
+    - 18.0.0.0.ru-2019-10.rur-2019-10.r1
+    - 19.0.0.0.ru-2020-01.rur-2020-01.r1
+    - 19.0.0.0.ru-2019-07.rur-2019-07.r1
+    - 19.0.0.0.ru-2019-10.rur-2019-10.r1    
+    ConstraintDescription: Must select a valid Oracle compatible version to family.
+    Default: 12.1.0.2.v7
+    Description: The Oracle Family compatible version Ex 12.1.0.2.v7
+    Type: String
+  LicenseModel:
+    AllowedValues:
+    - license-included
+    - bring-your-own-license
+    ConstraintDescription: Must select a valid Oracle license to be use.
+    Default: bring-your-own-license
+    Description: The Oracle License type.
+    Type: String
+Conditions:
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+Resources:
+  LandingZone:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-landingzone-template.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:
+        UserSpecifiedVPCId: !Ref UserSpecifiedVPCId
+        Subnet1ID: !Ref Subnet1ID
+        Subnet2ID: !Ref Subnet2ID
+        DLMCrossRegionCopy: !Ref DLMCrossRegionCopy        
+  PuppetServer:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-puppetserver-template.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:
+        EnvironmentSize: !Ref EnvironmentSize      
+        Subnet:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreSubnet1ID
+        SecurityGroups:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreSecurityGroup
+        KeyPairName: !Ref KeyPairName
+        StackPrefix: !Ref StackPrefix
+        ProxyServer: !Ref ProxyServer
+        IamInstanceProfile:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreInstanceProfile
+        PuppetServerFQDN: !Ref PuppetServerFQDN
+  OracleDatabase:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-oracledb-template.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:
+        VpcId:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreVpcID
+        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ] 
+        SecurityGroups: 
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreSecurityGroup
+        StackPrefix: !Ref StackPrefix
+        DBName: !Ref DBName
+        Admin: !Ref Admin
+        AdminPassword: !Ref AdminPassword
+        DBAllocatedStorage: !Ref DBAllocatedStorage 
+        DBInstanceClass: !Ref DBInstanceClass
+        OracleEdition: !Ref OracleEdition
+        Family: !Ref Family
+        Compatible: !Ref Compatible
+        EngineVersion: !Ref EngineVersion
+        LicenseModel: !Ref LicenseModel
+  ApacheServer:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-apacheserver-template.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:     
+        EnvironmentSize: !Ref EnvironmentSize
+        VpcId:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreVpcID
+        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
+        SecurityGroups:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreSecurityGroup
+        KeyPairName: !Ref KeyPairName
+        StackPrefix: !Ref StackPrefix
+        PuppetServerIP:
+          Fn::GetAtt:
+          - PuppetServer
+          - Outputs.PupperServerIP
+        ProxyServer: !Ref ProxyServer
+        IamInstanceProfile:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreInstanceProfile
+        SSLCertificateArn: !Ref DeployServerSSLCertificateArn
+  WeblogicServer:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}xstore-weblogicserver-template.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:     
+        EnvironmentSize: !Ref EnvironmentSize
+        VpcId:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreVpcID
+        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
+        SecurityGroups:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreSecurityGroup
+        KeyPairName: !Ref KeyPairName
+        StackPrefix: !Ref StackPrefix
+        PuppetServerIP:
+          Fn::GetAtt:
+          - PuppetServer
+          - Outputs.PupperServerIP
+        ProxyServer: !Ref ProxyServer
+        IamInstanceProfile:
+          Fn::GetAtt:
+          - LandingZone
+          - Outputs.XStoreInstanceProfile
+        SSLCertificateArn: !Ref XAdminSSLCertificateArn
+        EFSVolumeName: !Ref EFSVolumeName
+        EFSMountPoint: !Ref EFSMountPoint
+        DeployServerELB: 
+          Fn::GetAtt:
+          - ApacheServer
+          - Outputs.ELBDNSName

@@ -1,0 +1,294 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This template creates Oracle RDS service on AWS.**WARNING** This template creates 
+  RDS Service and related resources. You will be billed for the AWS resources used if you create 
+  a stack from this template.
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: Network Configuration
+        Parameters:
+        - VpcId
+        - Subnets
+        - SecurityGroups
+      - Label:
+          default: Oracle Configuration
+        Parameters:
+        - StackPrefix
+        - DBName
+        - Admin
+        - AdminPassword
+        - DBAllocatedStorage
+        - DBInstanceClass
+        - OracleEdition
+        - Family
+        - Compatible
+        - EngineVersion
+        - LicenseModel
+    ParameterLabels:
+      VpcId:
+        default: VPC ID
+      Subnets:
+        default: Private Subnet ID(s)
+      SecurityGroups:
+        default: Security Group ID(s)
+      StackPrefix:
+        default: Stack Name Prefix
+      DBName:
+        default: DB Name
+      Admin:
+        default: Admin User
+      AdminPassword:
+        default: Admin Password
+      DBAllocatedStorage:
+        default: DB Allocated Storage
+      DBInstanceClass:
+        default: DB Instance Class
+      OracleEdition:
+        default: Oracle Edition
+      Family:
+        default: Oracle Family
+      Compatible:
+        default: Oracle Compatible
+      EngineVersion:
+        default: Oracle Engine Version
+      LicenseModel:
+        default: Oracle License Model
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VpcId of your existing Virtual Private Cloud (VPC)
+  Subnets:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: The name for the DB subnet group
+    ConstraintDescription: The list of SubnetIds, for at least two Availability Zones in the region in your Virtual Private Cloud (VPC)
+  SecurityGroups:
+    Type: List<AWS::EC2::SecurityGroup::Id>
+    Description: The list of SecurityGroupIds in your Virtual Private Cloud (VPC)
+    ConstraintDescription: must be the SecurityGroup Ids of an existing Virtual Private Cloud.
+  StackPrefix:
+    Default: ORA
+    Type: String
+    MinLength: "1"
+    MaxLength: "20"
+    Description: The prefix to all the associated resources in the stack
+  DBName:
+    Default: orcldb
+    Description: The Oracle DBName (SID) name
+    Type: String
+    MinLength: '1'
+    MaxLength: '64'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  Admin:
+    Default: admin
+    Description: The Oracle database admin account username
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  AdminPassword:
+    Default: Test1234
+    NoEcho: 'true'
+    Description: The Oracle database admin account password
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  DBAllocatedStorage:
+    ConstraintDescription: must be between 100 and 4096 GiB.
+    AllowedValues:
+    - 100
+    - 500
+    - 1024
+    - 2048
+    - 4096
+    Default: '100'
+    Description: The size of the database in gigabytes (GiB).
+    Type: Number
+  DBInstanceClass:
+    AllowedValues:
+    - db.m3.large
+    - db.m3.xlarge
+    - db.m3.2xlarge
+    - db.m4.2xlarge
+    - db.r4.large
+    - db.r4.16xlarge
+    - db.r4.8xlarge
+    - db.r4.4xlarge
+    ConstraintDescription: Must select a valid database instance type.
+    Default: db.r4.large
+    Description: The name of the compute and memory capacity class of the DB instance.
+    Type: String
+  OracleEdition:
+    AllowedValues:
+    - oracle-ee
+    - oracle-se
+    - oracle-se1
+    - oracle-se2 
+    ConstraintDescription: Must select a valid Oracle Edition.
+    Default: oracle-ee
+    Description: Select Oracle Edition.
+    Type: String
+  Family:
+    AllowedValues:
+    - oracle-ee-11.2
+    - oracle-ee-12.1
+    - oracle-ee-12.2
+    - oracle-ee-18.0
+    - oracle-ee-19.0
+    - oracle-se-11.2
+    - oracle-se-12.1
+    - oracle-se-12.2
+    - oracle-se-18.0
+    - oracle-se-19.0
+    - oracle-se1-11.2
+    - oracle-se1-12.1
+    - oracle-se1-12.2
+    - oracle-se1-18.0
+    - oracle-se1-19.0
+    - oracle-se2-11.2
+    - oracle-se2-12.1
+    - oracle-se2-12.2
+    - oracle-se2-18.0
+    - oracle-se2-19.0    
+    ConstraintDescription: Must select a valid Oracle family.
+    Default: oracle-ee-12.1
+    Description: Select Oracle Family Engine.
+    Type: String
+  Compatible:
+    AllowedValues:
+    - 12.1.0.2
+    - 12.2.0.1
+    - 18.0.0.0
+    - 19.0.0.0
+    ConstraintDescription: Must select a valid Oracle compatible version to family.
+    Default: 12.1.0.2
+    Description: Oracle Family compatible version Ex 12.1.0.2
+    Type: String
+  EngineVersion:
+    AllowedValues:
+    - 11.2.0.4.v1
+    - 11.2.0.4.v2
+    - 11.2.0.4.v3
+    - 11.2.0.4.v4
+    - 11.2.0.4.v5
+    - 11.2.0.4.v6
+    - 11.2.0.4.v7
+    - 11.2.0.4.v8
+    - 11.2.0.4.v9
+    - 11.2.0.4.v10
+    - 11.2.0.4.v11
+    - 11.2.0.4.v12
+    - 11.2.0.4.v13
+    - 11.2.0.4.v14
+    - 11.2.0.4.v15
+    - 11.2.0.4.v16
+    - 11.2.0.4.v17
+    - 11.2.0.4.v18
+    - 11.2.0.4.v19
+    - 11.2.0.4.v20
+    - 11.2.0.4.v21
+    - 11.2.0.4.v22
+    - 11.2.0.4.v23
+    - 12.1.0.2.v1
+    - 12.1.0.2.v2
+    - 12.1.0.2.v3
+    - 12.1.0.2.v4
+    - 12.1.0.2.v5
+    - 12.1.0.2.v6
+    - 12.1.0.2.v7
+    - 12.1.0.2.v8
+    - 12.1.0.2.v9
+    - 12.1.0.2.v10
+    - 12.1.0.2.v11
+    - 12.1.0.2.v12
+    - 12.1.0.2.v13
+    - 12.1.0.2.v14
+    - 12.1.0.2.v15
+    - 12.1.0.2.v16
+    - 12.1.0.2.v17
+    - 12.1.0.2.v18
+    - 12.1.0.2.v19
+    - 12.2.0.1.ru-2018-10.rur-2018-10.r1
+    - 12.2.0.1.ru-2019-01.rur-2019-01.r1
+    - 12.2.0.1.ru-2019-04.rur-2019-04.r1
+    - 12.2.0.1.ru-2019-07.rur-2019-07.r1
+    - 12.2.0.1.ru-2019-10.rur-2019-10.r1
+    - 12.2.0.1.ru-2020-01.rur-2020-01.r1
+    - 18.0.0.0.ru-2020-01.rur-2020-01.r1
+    - 18.0.0.0.ru-2019-07.rur-2019-07.r1
+    - 18.0.0.0.ru-2019-10.rur-2019-10.r1
+    - 19.0.0.0.ru-2020-01.rur-2020-01.r1
+    - 19.0.0.0.ru-2019-07.rur-2019-07.r1
+    - 19.0.0.0.ru-2019-10.rur-2019-10.r1    
+    ConstraintDescription: Must select a valid Oracle compatible version to family.
+    Default: 12.1.0.2.v7
+    Description: Oracle Family compatible version Ex 12.1.0.2.v7
+    Type: String
+  LicenseModel:
+    AllowedValues:
+    - license-included
+    - bring-your-own-license
+    ConstraintDescription: Must select a valid Oracle license to be use.
+    Default: license-included
+    Description: Select Oracle License type.
+    Type: String
+Mappings:
+  AWSInstanceType2Arch:
+    r4.large:
+      Arch: '64'
+    m5.xlarge:
+      Arch: '64'
+    m3.large:
+      Arch: '64'
+Resources:
+  OrclDBSubnetGroup:
+    Type: 'AWS::RDS::DBSubnetGroup'
+    Properties:
+      DBSubnetGroupDescription: Subnets available for the RDS DB Instance
+      SubnetIds: !Ref Subnets
+  OraDB:
+    Type: 'AWS::RDS::DBInstance'
+    Properties:
+      DBName: !Ref DBName
+      DBInstanceIdentifier: !Ref Admin
+      DBSubnetGroupName: !Ref OrclDBSubnetGroup
+      VPCSecurityGroups: !Ref SecurityGroups
+      AllocatedStorage: !Ref DBAllocatedStorage
+      DBInstanceClass: !Ref DBInstanceClass
+      Port: '1521'
+      MasterUsername: !Ref Admin
+      MasterUserPassword: !Ref AdminPassword
+      DBParameterGroupName: !Ref OrclRDSParamGroup
+      MultiAZ: false
+      PubliclyAccessible: 'false'
+      Engine: !Ref OracleEdition
+      LicenseModel: !Ref LicenseModel
+      EngineVersion: !Ref EngineVersion
+    DeletionPolicy: Snapshot
+  OrclRDSParamGroup:
+    Type: 'AWS::RDS::DBParameterGroup'
+    Properties:
+      Family: !Ref Family
+      Description: Oracle DB Parameter Group
+      Parameters:
+        compatible: !Ref Compatible
+Outputs:
+  JDBCConnectionString:
+    Description: JDBC connection string for the Oracle database
+    Value: !Join 
+      - ''
+      - - 'jdbc:oracle://'
+        - !GetAtt 
+          - OraDB
+          - Endpoint.Address
+        - ':'
+        - !GetAtt 
+          - OraDB
+          - Endpoint.Port
+        - /
+        - !Ref DBName
