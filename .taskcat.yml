@@ -34,8 +34,8 @@ tests:
       QSS3BucketName: $[taskcat_autobucket]
       QSS3BucketRegion: $[taskcat_current_region]
       QSS3KeyPrefix: quickstart-skillnet-xstoreoffice/
-      DeployServerSSLCertificateArn: override
-      XAdminSSLCertificateArn: override
+      DeployServerSSLCertificateArn: arn:aws:acm:us-east-1:860521661824:certificate/13273109-4750-4bfc-a313-6883cf0c5943
+      XAdminSSLCertificateArn: arn:aws:acm:us-east-1:860521661824:certificate/13273109-4750-4bfc-a313-6883cf0c5943
       AdminPassword: $[taskcat_genpass_16]
     regions:
     - us-east-1
