@@ -85,13 +85,13 @@ Mappings:
       "OEL7AMI" : "ami-0901daa800ec1a6c3" 
   InstanceSize:
     Small:
-      "EC2" : "c5.large"
+      "EC2" : "c3.large"
       "EbsVolumeSize" : "100"
     Medium:
-      "EC2" : "c5.xlarge"
+      "EC2" : "c3.xlarge"
       "EbsVolumeSize" : "200"
     Large:
-      "EC2" : "c5.2xlarge"
+      "EC2" : "c3.2xlarge"
       "EbsVolumeSize" : "250"
 Resources:
   PuppetServer:

@@ -22,7 +22,6 @@ Metadata:
       - EnvironmentSize
       - KeyPairName
       - StackPrefix
-      - ProxyServer
       - PuppetServerFQDN
       - DeployServerSSLCertificateArn
       - XAdminSSLCertificateArn
@@ -81,8 +80,6 @@ Metadata:
         default: Key Pair Name
       StackPrefix:
         default: Stack Name Prefix
-      ProxyServer:
-        default: Proxy Server URL
       PuppetServerFQDN:
         default: Puppet Server FQDN
       DeployServerSSLCertificateArn:
@@ -203,10 +200,6 @@ Parameters:
     AllowedPattern: "[a-zA-Z0-9]*"
     Description: The prefix name to all the associated resources in the stack.
     Default: XStoreOffice
-  ProxyServer:
-    Type: String
-    Default: "http://192.168.50.197:3128"
-    Description: The proxy server URL to have internet access.
   PuppetServerFQDN:
     Type: String
     Default: "puppet.skillnetaws.com"
@@ -417,13 +410,13 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template'
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/linux-bastion.template.yaml'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
         QSS3BucketName: !Ref QSS3BucketName
         QSS3BucketRegion: !Ref QSS3BucketRegion
-        QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}submodules/quickstart-linux-bastion/'
+        QSS3KeyPrefix: !Ref QSS3KeyPrefix
         KeyPairName: !Ref KeyPairName
         PublicSubnet1ID: !GetAtt VPCStack.Outputs.PublicSubnet1ID
         PublicSubnet2ID: !GetAtt VPCStack.Outputs.PublicSubnet2ID
@@ -435,7 +428,7 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-qs-existing-vpc.template.yaml'
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/xstore-qs-main.template.yaml'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
@@ -448,7 +441,7 @@ Resources:
         EnvironmentSize: !Ref EnvironmentSize
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
-        ProxyServer: !Ref ProxyServer
+        ProxyServer: !Join [ '' , ['http://', !GetAtt BastionStack.Outputs.EIP1, ':3128' ] ]
         PuppetServerFQDN: !Ref PuppetServerFQDN
         DeployServerSSLCertificateArn: !Ref DeployServerSSLCertificateArn
         XAdminSSLCertificateArn: !Ref XAdminSSLCertificateArn

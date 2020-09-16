@@ -1,6 +1,6 @@
 project:
   name: quickstart-skillnet-xstoreoffice
-  owner: egarcia@progress.com
+  owner: quickstart@amazon.com
   package_lambda: false
   regions:
   - af-south-1
@@ -32,10 +32,10 @@ tests:
       QSS3BucketName: $[taskcat_autobucket]
       QSS3BucketRegion: $[taskcat_current_region]
       QSS3KeyPrefix: quickstart-skillnet-xstoreoffice/
-      DeployServerSSLCertificateArn: arn:aws:acm:us-east-1:037498179568:certificate/8f57ee95-8ff2-4abd-9a7b-27cf530990ea
-      XAdminSSLCertificateArn: arn:aws:acm:us-east-1:037498179568:certificate/8f57ee95-8ff2-4abd-9a7b-27cf530990ea
+      DeployServerSSLCertificateArn: override
+      XAdminSSLCertificateArn: override
       AdminPassword: $[taskcat_genpass_16]
     regions:
     - us-east-1
     s3_bucket: ''
-    template: templates/xstore-qs-new-vpc.template.yaml
+    template: templates/xstore-entrypoint-new-vpc.template.yaml

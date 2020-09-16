@@ -3,18 +3,18 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This template creates a VPC infrastructure for Oracle XStore Application deployment on AWS.
   This template creates VPC, 2 Private Subnets, All required Security Groups, VPC End points for S3 bucket
   and Monitoring, Data lifecycle Manager for instance backup, Instance Profile for S3 and monitoring access.
-  (qs-1r3td6h2i)
+  (qs-1r3td6h0n)
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Launch into a new VPC"
+    EntrypointName: "Launch into an existing VPC"
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
           default: Network Configuration
         Parameters:
-        - VpcCIDR
-        - Subnet1CIDR
-        - Subnet2CIDR
+          - UserSpecifiedVPCId
+          - Subnet1ID
+          - Subnet2ID
       - Label:
           default: AWS Quick Start configuration
         Parameters:
@@ -52,14 +52,14 @@ Metadata:
       - Label:
           default: Backup configuration
         Parameters:
-        - DLMCrossRegionCopy
+          - DLMCrossRegionCopy
     ParameterLabels:
-      VpcCIDR:
-        default: VPC CIDR
-      Subnet1CIDR:
-        default: First Private Subnet CIDR
-      Subnet2CIDR:
-        default: Second Private Subnet CIDR
+      UserSpecifiedVPCId:
+        default: VPC ID
+      Subnet1ID:
+        default: First Private Subnet ID
+      Subnet2ID:
+        default: Second Private Subnet ID
       DLMCrossRegionCopy:
         default: DLM Cross Region Name
       QSS3BucketName:
@@ -89,7 +89,7 @@ Metadata:
       DBName:
         default: DB Name
       Admin:
-        default: Admin User
+        default: Admin User 
       AdminPassword:
         default: Admin Password
       DBAllocatedStorage:
@@ -107,32 +107,23 @@ Metadata:
       LicenseModel:
         default: Oracle License Model
 Parameters:
-  VpcCIDR:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.10.0.0/24
-    Description: CIDR block for VPC
-    Type: String
-  Subnet1CIDR:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.10.0.0/25
-    Description: CIDR block for First Private Subnet.
-    Type: String
-  Subnet2CIDR:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.10.0.128/25
-    Description: CIDR block for Second Private Subnet.
-    Type: String
+  UserSpecifiedVPCId:
+    Type: 'AWS::EC2::VPC::Id'
+    Description: The VPC ID where to deploy XStore Office in.
+  Subnet1ID:
+    Type: 'AWS::EC2::Subnet::Id'
+    Description: The First Private Subnet ID.  
+  Subnet2ID:
+    Type: 'AWS::EC2::Subnet::Id'
+    Description: The Second Private Subnet ID. Select Subnet ID with different AZ that you selected from the First Private Subnet ID.
   DLMCrossRegionCopy:
-    Description: The Cross Region to copy the EC2 instance snapshots for backup.  
+    Description: The Cross Region to copy the EC2 instance snapshots for backup. 
     Type: String
     Default: us-east-2
   QSS3BucketName:
     AllowedPattern: "^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$"
     ConstraintDescription: "Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-)."
-    Default: skillnet-aws-isv-workload-migration
+    Default: aws-quickstart
     Description: "S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-)."
     Type: String
   QSS3BucketRegion:
@@ -142,7 +133,7 @@ Parameters:
   QSS3KeyPrefix:
     AllowedPattern: "^[0-9a-zA-Z-/]*$"
     ConstraintDescription: "Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/)."
-    Default: xstore-quickstart/
+    Default: quickstart-skillnet-xstoreoffice/
     Description: "S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/)."
     Type: String
   EnvironmentSize:
@@ -221,7 +212,7 @@ Parameters:
     - 1024
     - 2048
     - 4096
-    Default: 100
+    Default: '100'
     Description: The size of the database in gigabytes (GiB).
     Type: Number
   DBInstanceClass:
@@ -349,7 +340,7 @@ Parameters:
     - license-included
     - bring-your-own-license
     ConstraintDescription: Must select a valid Oracle license to be use.
-    Default: bring-your-own-license
+    Default: license-included
     Description: The Oracle License type.
     Type: String
 Conditions:
@@ -364,10 +355,10 @@ Resources:
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
-        VpcCIDR: !Ref VpcCIDR
-        Subnet1CIDR: !Ref Subnet1CIDR
-        Subnet2CIDR: !Ref Subnet2CIDR
-        DLMCrossRegionCopy: !Ref DLMCrossRegionCopy
+        UserSpecifiedVPCId: !Ref UserSpecifiedVPCId
+        Subnet1ID: !Ref Subnet1ID
+        Subnet2ID: !Ref Subnet2ID
+        DLMCrossRegionCopy: !Ref DLMCrossRegionCopy        
   PuppetServer:
     Type: "AWS::CloudFormation::Stack"
     Properties:
@@ -379,18 +370,18 @@ Resources:
       Parameters:
         EnvironmentSize: !Ref EnvironmentSize      
         Subnet:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreSubnet1ID
         SecurityGroups:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreSecurityGroup
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
         ProxyServer: !Ref ProxyServer
         IamInstanceProfile:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreInstanceProfile
         PuppetServerFQDN: !Ref PuppetServerFQDN
@@ -404,12 +395,12 @@ Resources:
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
         VpcId:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreVpcID
-        Subnets: !Join [ ",", [ !GetAtt [ LandingZone, Outputs.XStoreSubnet1ID ], !GetAtt [ LandingZone, Outputs.XStoreSubnet2ID ] ] ] 
+        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ] 
         SecurityGroups: 
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreSecurityGroup
         StackPrefix: !Ref StackPrefix
@@ -434,23 +425,23 @@ Resources:
       Parameters:     
         EnvironmentSize: !Ref EnvironmentSize
         VpcId:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreVpcID
-        Subnets: !Join [ ",", [ !GetAtt [ LandingZone, Outputs.XStoreSubnet1ID ], !GetAtt [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
+        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
         SecurityGroups:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreSecurityGroup
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
         PuppetServerIP:
-          !GetAtt
+          Fn::GetAtt:
           - PuppetServer
           - Outputs.PupperServerIP
         ProxyServer: !Ref ProxyServer
         IamInstanceProfile:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreInstanceProfile
         SSLCertificateArn: !Ref DeployServerSSLCertificateArn
@@ -465,29 +456,29 @@ Resources:
       Parameters:     
         EnvironmentSize: !Ref EnvironmentSize
         VpcId:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreVpcID
-        Subnets: !Join [ ",", [ !GetAtt [ LandingZone, Outputs.XStoreSubnet1ID ], !GetAtt [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
+        Subnets: !Join [ ",", [ Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet1ID ], Fn::GetAtt: [ LandingZone, Outputs.XStoreSubnet2ID ] ] ]            
         SecurityGroups:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreSecurityGroup
         KeyPairName: !Ref KeyPairName
         StackPrefix: !Ref StackPrefix
         PuppetServerIP:
-          !GetAtt
+          Fn::GetAtt:
           - PuppetServer
           - Outputs.PupperServerIP
         ProxyServer: !Ref ProxyServer
         IamInstanceProfile:
-          !GetAtt
+          Fn::GetAtt:
           - LandingZone
           - Outputs.XStoreInstanceProfile
         SSLCertificateArn: !Ref XAdminSSLCertificateArn
         EFSVolumeName: !Ref EFSVolumeName
         EFSMountPoint: !Ref EFSMountPoint
-        DeployServerELB: 
-          !GetAtt
-          - ApacheServer
-          - Outputs.ELBDNSName
+#        DeployServerELB: 
+#          Fn::GetAtt:
+#          - ApacheServer
+#          - Outputs.ELBDNSName
