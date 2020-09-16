@@ -152,6 +152,12 @@ Resources:
         ToPort: -1
         CidrIp: 0.0.0.0/0
         Description: "Ping to verify connectivity"
+      SecurityGroupEgress:
+      - IpProtocol: TCP
+        FromPort: 3128
+        ToPort: 3128
+        CidrIp: 0.0.0.0/0
+        Description: "Proxy server"
   SGBaseIngress1:
     Type: 'AWS::EC2::SecurityGroupIngress'
     Properties:       

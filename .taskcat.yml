@@ -38,4 +38,4 @@ tests:
     regions:
     - us-east-1
     s3_bucket: ''
-    template: templates/xstore-qs-new-vpc.template.yaml
+    template: templates/xstore-entrypoint-new-vpc.template.yaml
