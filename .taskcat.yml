@@ -28,6 +28,8 @@ project:
 tests:
   xstoreoffice:
     parameters:
+      AvailabilityZones: $[taskcat_genaz_2]
+      RemoteAccessCIDR: 0.0.0.0/0
       KeyPairName: $[taskcat_getkeypair]
       QSS3BucketName: $[taskcat_autobucket]
       QSS3BucketRegion: $[taskcat_current_region]
