@@ -23,8 +23,29 @@ Shell (SSH) access to EC2 instances in public and private subnets.*
 
 In the private subnets:
 // Add bullet points for any additional components that are included in the deployment. Make sure that the additional components are also represented in the architecture diagram.
-* <describe any additional components>.
 
-*The template that deploys the Quick Start into an existing VPC skips
-the components marked by asterisks and prompts you for your existing VPC
-configuration.
+* An Amazon Relational Database Service (Amazon RDS) Oracle database stores XCenter, XAdmin and XCenter replication databases.
+* Apache Tomcat deployment server running on EC2 instance(s) for deployments from Oracle Retail Xstore Office.
+* Oracle Weblogic cluster nodes running on EC2 instances for Oracle Retail Xstore Office applications deployment.
+* Puppet server running on EC2 instance for Apache tomcat installation, Oracle Weblogic cluster installation and data loader execution.
+
+*Amazon EFS*, which will be mounted by all the instances that are part of the WebLogic cluster. In the reference architecture, we use Amazon EFS for shared storage. The WebLogic product binaries, common files and scripts, the domain configuration files, and logs are stored in Amazon EFS, which includes 
+
+* Weblogic Binaries
+* Domain Configurations
+* Common scripts and 
+* Logs 
+
+*Amazon Data Lifecycle Manager* (DLM) to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. Automating snapshot management helps you to: 
+
+* Protect valuable data by enforcing a regular backup schedule. 
+* Retain backups as required by auditors or internal compliance. 
+* Reduce storage costs by deleting outdated backups. 
+* DLM Configuration:  
+** EC2 Tag ( Name: *LCM_TAG* , Value: *XSTORE* ) key-value pair is used to take snapshots.
+** Recent 3 snapshots are retained. 
+** Copy of snapshot is stored under another region for data redundancy.
+
+*Amazon CloudWatch* is a monitoring and observability service built for DevOps Engineers, Developers, Site Reliability Engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications running smoothly. 
+
+*The template that deploys the Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration. 

@@ -1,23 +1,29 @@
 // Add steps as necessary for accessing the software, post-configuration, and testing. Don’t include full usage instructions for your software, but add links to your product documentation for that information.
 //Should any sections not be applicable, remove them
 
-== Test the deployment
-// If steps are required to test the deployment, add them here. If not, remove the heading
-
 == Post deployment steps
 // If Post-deployment steps are required, add them here. If not, remove the heading
+Disable Autoscaling Group for Oracle Weblogic Cluster and Apache Tomcat server.
 
-== Best practices for using {partner-product-name} on AWS
-// Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
-
-_Add any best practices for using the software._
+. Select Auto Scaling Group for Oracle Weblogic Server.
+. In the Details tab, Click Edit Button.
+. In Suspended Processes list box, select all the processes to suspend.
+. Repeat all the above steps for Apache Tomcat Server.
 
 == Security
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-_Add any security-related information._
+*Monitoring Infrastructure* 
 
-== Other useful information
-//Provide any other information of interest to users, especially focusing on areas where AWS or cloud usage differs from on-premises usage.
+After you implement your Oracle WebLogic applications to AWS, you can continue to use the monitoring tools you are familiar with to monitor your Oracle WebLogic environment and the application you deployed on WebLogic. 
+You can use Fusion Middleware Control, the Oracle WebLogic Server Administration Console or the command line (using the WSLT state command) to monitor your Oracle WebLogic infrastructure components. This includes WebLogic domains, Managed Servers, and clusters.
+You can also monitor the Java applications deployed and get information such as the state of your application, the number of active sessions, and response times. 
 
-_Add any other details that will help the customer use the software on AWS._
+
+For more information about how to monitor Oracle WebLogic, see the Oracle WebLogic documentation
+You can also use Amazon CloudWatch to monitor AWS Cloud resources and the applications you run on AWS. Amazon CloudWatch enables you to monitor your AWS resources in near real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, ELB load balancers, and Amazon RDS DB instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch will also monitor. 
+With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure a notification of the event to be sent through SMS or email. Real-time alarms for metrics and events enable you to minimize downtime and potential business impact. 
+
+== Support
+
+The {partner-company-name} support team is standing by to assist you to setup {partner-product-name} on your AWS environment. Send an email to support_xstoreoffice@skillnetinc.com to contact support team.
