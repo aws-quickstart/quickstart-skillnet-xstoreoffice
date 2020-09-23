@@ -1,1 +1,1 @@
-This Quick Start requires either a subscription to the AMI in AWS Marketplace or custom baked image can be provided by {partner-company-name} upon request.
+This Quick Start requires a custom AMI provided by {partner-company-name} upon request.
