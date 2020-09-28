@@ -1,5 +1,5 @@
 Deploying this Quick Start for a new virtual private cloud (VPC) with
-*default parameters* builds the following _{partner-product-name}_ environment in the
+*default parameters* builds the following {partner-product-name} environment in the
 AWS Cloud.
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
@@ -42,10 +42,11 @@ In the private subnets:
 * Retains backups as required by auditors or for internal compliance.
 * Reduces storage costs by deleting outdated backups.
 
-DLM is configured as follows:  
-* The EC2 tag ( Name: *LCM_TAG* , Value: *XSTORE* ) key-value pair is used to take snapshots.
-* The most recent 3 snapshots are retained. 
-* A copy of each snapshot is stored in another AWS Region for data redundancy.
+DLM is configured as follows:
+
+. The EC2 tag ( Name: *LCM_TAG* , Value: *XSTORE* ) key-value pair is used to take snapshots.
+. The most recent three snapshots are retained. 
+. A copy of each snapshot is stored in another AWS Region for data redundancy.
 
 *Amazon CloudWatch* is a monitoring and observability service built for DevOps Engineers, Developers, Site Reliability Engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications running smoothly. 
 
