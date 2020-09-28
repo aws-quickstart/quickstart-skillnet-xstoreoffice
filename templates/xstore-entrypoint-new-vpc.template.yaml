@@ -1,11 +1,10 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This template creates a VPC infrastructure for a multi-AZ, multi-tier
   deployment of xStoreOffice on AWS. It deploys a VPC with a bastion host.
-  WARNING This template creates EC2 instances and related resources. You will be billed for
-  the AWS resources used if you create a stack from this template. (qs-1r53pe6g1)
+    WARNING This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r53pe6g1)
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Launch into a new VPC"
+    EntrypointName: "Parameters for launching into a new VPC"
   AWS::CloudFormation::Interface:
     ParameterGroups:
     - Label:
@@ -120,26 +119,26 @@ Parameters:
     Type: List<AWS::EC2::AvailabilityZone::Name>
   PrivateSubnet1CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
+    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28.
     Default: 10.0.0.0/19
     Description: CIDR block for private subnet 1 located in Availability Zone 1.
     Type: String
   PrivateSubnet2CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
+    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28.
     Default: 10.0.32.0/19
     Description: CIDR block for private subnet 2 located in Availability Zone 2.
     Type: String
   PublicSubnet1CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
+    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28.
     Default: 10.0.128.0/20
     Description: CIDR block for the public (DMZ) subnet 1 located in Availability
       Zone 1.
     Type: String
   PublicSubnet2CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
+    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28.
     Default: 10.0.144.0/20
     Description: CIDR block for the public (DMZ) subnet 2 located in Availability
       Zone 2.
@@ -160,27 +159,25 @@ Parameters:
     Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
-    ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
-      uppercase letters, hyphens (-), and forward slash (/).
+    ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).
     Default: quickstart-skillnet-xstoreoffice/
     Description: S3 key prefix for the Quick Start assets. Quick Start key prefix
       can include numbers, lowercase letters, uppercase letters, hyphens (-), and
-      forward slash (/).
+      forward slashes (/).
     Type: String
   RemoteAccessCIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/x
-    Description: CIDR IP range that is permitted to access the bastion/rdgw. We recommend
-      that you set this value to a trusted IP range.
+    Description: CIDR IP range that is permitted to access the bastion/rdgw. We recommend that you set this value to a trusted IP range.
     Type: String
   VPCCIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
+    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28.
     Default: 10.0.0.0/16
     Description: CIDR block for the VPC.
     Type: String
   DLMCrossRegionCopy:
-    Description: The Cross Region to copy the EC2 instance snapshots for backup. 
+    Description: Cross Region to copy the EC2 instance snapshots for backup. 
     Type: String
     Default: us-east-2
   EnvironmentSize:
@@ -190,17 +187,17 @@ Parameters:
       - Small
       - Medium
       - Large
-    Description: The XStore Office Environment Size (S,M,L).
+    Description: XStore Office Environment Size (S,M,L).
   KeyPairName:
     Description: EC2 key pair name.
     Type: AWS::EC2::KeyPair::KeyName
-    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+    ConstraintDescription: Must be the name of an existing EC2 key pair.
   StackPrefix:
     Type: String
     MinLength: "1"
     MaxLength: "20"
     AllowedPattern: "[a-zA-Z0-9]*"
-    Description: The prefix name to all the associated resources in the stack.
+    Description: Prefix name for all the associated resources in the stack.
     Default: XStoreOffice
   PuppetServerFQDN:
     Type: String
@@ -208,36 +205,36 @@ Parameters:
     Description: Assign Fully Qualified Domain Name for Puppet Server.
   DeployServerSSLCertificateArn:
     Type: String
-    Description: The SSL certificate ARN for Deployment Server Load Balancer.
+    Description: SSL certificate ARN for Deployment Server Load Balancer.
   XAdminSSLCertificateArn:
     Type: String
-    Description: The SSL certificate ARN for XAdmin Application Load Balancer.
+    Description: SSL certificate ARN for XAdmin Application Load Balancer.
   EFSVolumeName:
-    Description: The name to be used for the EFS volume.
+    Description: Name to be used for the EFS volume.
     Type: String
     MinLength: '1'
     Default: XStoreOfficeWlsEFS
   EFSMountPoint:
-    Description: The Linux mount point for the EFS volume.
+    Description: Linux mount point for the EFS volume.
     Type: String
     MinLength: '1'
     Default: "/home/oracle"
   DBName:
     Default: orcldb
-    Description: The Oracle DBName (SID) name.
+    Description: Oracle DBName (SID) name.
     Type: String
     MinLength: '1'
     MaxLength: '64'
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+    ConstraintDescription: Must begin with a letter and contain only alphanumeric characters.
   Admin:
     Default: xstore
-    Description: The Oracle database admin account username.
+    Description: Oracle database admin account username.
     Type: String
     MinLength: '1'
     MaxLength: '16'
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+    ConstraintDescription: Must begin with a letter and contain only alphanumeric characters.
   AdminPassword:
     Default: Test1234
     NoEcho: 'true'
@@ -246,9 +243,9 @@ Parameters:
     MinLength: '8'
     MaxLength: '41'
     AllowedPattern: '[a-zA-Z0-9]*'
-    ConstraintDescription: must contain only alphanumeric characters.
+    ConstraintDescription: Must contain only alphanumeric characters.
   DBAllocatedStorage:
-    ConstraintDescription: must be between 100 and 4096 GiB.
+    ConstraintDescription: Must be between 100 and 4096 GiB.
     AllowedValues:
     - 100
     - 500
@@ -256,7 +253,7 @@ Parameters:
     - 2048
     - 4096
     Default: '100'
-    Description: The size of the database in gigabytes (GiB).
+    Description: Size of the database in gigabytes (GiB).
     Type: Number
   DBInstanceClass:
     AllowedValues:
@@ -270,7 +267,7 @@ Parameters:
     - db.r4.4xlarge
     ConstraintDescription: Must select a valid database instance type.
     Default: db.r4.large
-    Description: The name of the compute and memory capacity class of the DB instance.
+    Description: Name of the compute and memory capacity class of the DB instance.
     Type: String
   OracleEdition:
     AllowedValues:
@@ -280,7 +277,7 @@ Parameters:
     - oracle-se2 
     ConstraintDescription: Must select a valid Oracle Edition.
     Default: oracle-ee
-    Description: The Oracle Edition.
+    Description: Oracle Edition.
     Type: String
   Family:
     AllowedValues:
@@ -306,7 +303,7 @@ Parameters:
     - oracle-se2-19.0    
     ConstraintDescription: Must select a valid Oracle family.
     Default: oracle-ee-12.1
-    Description: The Oracle Family Engine.
+    Description: Oracle Family Engine.
     Type: String
   Compatible:
     AllowedValues:
@@ -316,7 +313,7 @@ Parameters:
     - 19.0.0.0
     ConstraintDescription: Must select a valid Oracle compatible version to family.
     Default: 12.1.0.2
-    Description: The Oracle Family compatible version Ex 12.1.0.2
+    Description: Oracle Family compatible version (e.g., 12.1.0.2.)
     Type: String
   EngineVersion:
     AllowedValues:
@@ -376,7 +373,7 @@ Parameters:
     - 19.0.0.0.ru-2019-10.rur-2019-10.r1    
     ConstraintDescription: Must select a valid Oracle compatible version to family.
     Default: 12.1.0.2.v7
-    Description: The Oracle Family compatible version Ex 12.1.0.2.v7
+    Description: Oracle Family compatible version (e.g., 12.1.0.2.v7.)
     Type: String
   LicenseModel:
     AllowedValues:
@@ -384,7 +381,7 @@ Parameters:
     - bring-your-own-license
     ConstraintDescription: Must select a valid Oracle license to be use.
     Default: bring-your-own-license
-    Description: The Oracle License type.
+    Description: Oracle License type.
     Type: String
 Conditions:
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
