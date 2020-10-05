@@ -1,3 +1,1 @@
-This Quick Start reference deployment guide provides step-by-step instructions for deploying {partner-product-name} on the AWS Cloud.
-
-This Quick Start is for users who are looking to migrate an on-premises Oracle Retail Xstore Office workload to the AWS Cloud. The objective of this Quick Start is to provide a prescribed migration framework allowing Oracle Retail Xstore Office to be hosted on the AWS Cloud.
+The Quick Start is designed for those who want to migrate existing on-premises {partner-product-name} workloads to the AWS Cloud. This reference deployment guide contains the architectural considerations and configuration steps for deploying the Quick Start. It also provides links for viewing and launching the https://aws.amazon.com/cloudformation/[AWS CloudFormation^] templates that automate the deployment.

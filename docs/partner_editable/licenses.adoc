@@ -1,9 +1,9 @@
 // Include details about the license and how they can sign up. If no license is required, clarify that. 
 
-There are several licenses required for this Quick Start, with multiple combinations of bring-your-own-license (BYOL) and AWS-managed options:
+The following licenses are required for this Quick Start, with combinations of bring-your-own-license (BYOL) and AWS-managed options:
 
-* Oracle Retail Xstore Office (BYOL)
-* Oracle Retail Xstore Office Support [mandatory for use of RDS]
-* Oracle Database 12c (BYOL / AWS managed)
-* Oracle WebLogic Server (BYOL / AWS managed)
-* Oracle Enterprise Linux (GNU General Public License (GPLv2))
+* Oracle Retail Xstore Office (BYOL).
+* Oracle Retail Xstore Office Support (mandatory for use of Amazon Relational Database Service (Amazon RDS)).
+* Oracle Database 12c (BYOL / AWS-managed).
+* Oracle WebLogic Server (BYOL / AWS-managed).
+* Oracle Enterprise Linux (GNU General Public License (GPLv2)).
