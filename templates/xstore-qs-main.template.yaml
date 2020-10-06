@@ -5,8 +5,6 @@ Description: This template creates a VPC infrastructure for Oracle XStore Applic
   and Monitoring, Data lifecycle Manager for instance backup, Instance Profile for S3 and monitoring access.
   (qs-1r3td6h0n)
 Metadata:
-  QuickStartDocumentation:
-    EntrypointName: "Launch into an existing VPC"
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
