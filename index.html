@@ -806,7 +806,6 @@ p.footer-text a{color:#d7d8d8}
 <li><a href="#_sign_in_to_your_aws_account">Sign in to your AWS account</a></li>
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
 <li><a href="#_launch_into_an_existing_vpc">Launch into an existing VPC</a></li>
-<li><a href="#_launch_into_an_existing_vpc_2">Launch into an existing VPC</a></li>
 <li><a href="#_launch_into_a_new_vpc">Launch into a new VPC</a></li>
 </ul>
 </li>
@@ -1604,270 +1603,9 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </table>
 </div>
 <div class="sect2">
-<h3 id="_launch_into_an_existing_vpc_2">Launch into an existing VPC</h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Network Configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPC ID
-(<code>UserSpecifiedVPCId</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The VPC ID where to deploy XStore Office in.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">First Private Subnet ID
-(<code>Subnet1ID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The First Private Subnet ID.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Second Private Subnet ID
-(<code>Subnet2ID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Second Private Subnet ID. Select Subnet ID with different AZ that you selected from the First Private Subnet ID.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. AWS Quick Start configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket
-(<code>QSS3BucketName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket Region
-(<code>QSS3BucketRegion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. If you use your own bucket, specify that value.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
-(<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-skillnet-xstoreoffice/</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/).</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. XStore Office Environment configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environment Size
-(<code>EnvironmentSize</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The XStore Office Environment Size (S,M,L).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key Pair Name
-(<code>KeyPairName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key pair name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stack Name Prefix
-(<code>StackPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOffice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix name to all the associated resources in the stack.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Proxy Server URL
-(<code>ProxyServer</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://192.168.50.197:3128" class="bare">http://192.168.50.197:3128</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The proxy server URL to have internet access.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Puppet Server FQDN
-(<code>PuppetServerFQDN</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>puppet.skillnetaws.com</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assign Fully Qualified Domain Name for Puppet Server.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Certificate ARN for Deployment Server ALB
-(<code>DeployServerSSLCertificateArn</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The SSL certificate ARN for Deployment Server Load Balancer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Certificate ARN for XAdmin server ALB
-(<code>XAdminSSLCertificateArn</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. Weblogic Cluster Storage configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS Volume Name
-(<code>EFSVolumeName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name to be used for the EFS volume.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS Volume Mount Point
-(<code>EFSMountPoint</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Linux mount point for the EFS volume.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. Oracle Database configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Name
-(<code>DBName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle DBName (SID) name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin User
-(<code>Admin</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle database admin account username.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin Password
-(<code>AdminPassword</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle database admin account password.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Allocated Storage
-(<code>DBAllocatedStorage</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the database in gigabytes (GiB).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Instance Class
-(<code>DBInstanceClass</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.r4.large</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the compute and memory capacity class of the DB instance.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Edition
-(<code>OracleEdition</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle Edition.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family
-(<code>Family</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee-12.1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle Family Engine.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Compatible
-(<code>Compatible</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle Family compatible version Ex 12.1.0.2</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Engine Version
-(<code>EngineVersion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle Family compatible version Ex 12.1.0.2.v7</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle License Model
-(<code>LicenseModel</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>license-included</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle License type.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. Backup configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DLM Cross Region Name
-(<code>DLMCrossRegionCopy</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Cross Region to copy the EC2 instance snapshots for backup.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
 <h3 id="_launch_into_a_new_vpc">Launch into a new VPC</h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. Network configuration</caption>
+<caption class="title">Table 7. Network configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1926,7 +1664,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. XStore Office Environment configuration</caption>
+<caption class="title">Table 8. XStore Office Environment configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1979,7 +1717,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. Weblogic Cluster Storage configuration</caption>
+<caption class="title">Table 9. Weblogic Cluster Storage configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -2008,7 +1746,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. Oracle Database configuration</caption>
+<caption class="title">Table 10. Oracle Database configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -2085,7 +1823,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. Backup configuration</caption>
+<caption class="title">Table 11. Backup configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -2108,7 +1846,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. AWS Quick Start configuration</caption>
+<caption class="title">Table 12. AWS Quick Start configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">

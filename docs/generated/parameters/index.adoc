@@ -2,8 +2,5 @@
 === Launch into an existing VPC
 include::xstore-entrypoint-existing-vpc.template.adoc[]
 
-=== Launch into an existing VPC
-include::xstore-qs-main.template.adoc[]
-
 === Launch into a new VPC
 include::xstore-entrypoint-new-vpc.template.adoc[]
