@@ -4,7 +4,6 @@ Deploying this Quick Start for a new Virtual Private Cloud (VPC) with default pa
 :xrefstyle: short
 [#architecture1]
 .Quick Start architecture for {partner-product-name} on AWS
-[link=images/architecture_diagram.png]
 image::../images/architecture_diagram.png[Architecture,width=648,height=439]
 
 As shown in <<architecture1>>, the Quick Start sets up the following:
