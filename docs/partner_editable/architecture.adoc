@@ -23,12 +23,12 @@ best practices, to provide you with your own virtual network on AWS.*
 
 ** An Amazon Relational Database Service (Amazon RDS) Oracle database storing the XCenter, XCenter replication, and XAdmin databases.
 ** An Apache Tomcat deployment server running on an EC2 instance for deployments from Oracle Retail Xstore Office.
-** Oracle Weblogic cluster nodes running on EC2 instances for the deployment of Oracle Retail Xstore Office applications.
-** A Puppet server running on EC2 instance for Apache tomcat installation, Oracle Weblogic cluster installation, and data loader execution.
+** Oracle WebLogic cluster nodes running on EC2 instances for the deployment of Oracle Retail Xstore Office applications.
+** A Puppet server running on EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.
 
 * Amazon Elastic File System (EFS), which will be mounted by all the instances that are part of the WebLogic cluster. In the reference architecture, we use Amazon EFS for shared storage of the following:
 
-** Weblogic binaries
+** WebLogic binaries
 ** Domain configurations
 ** Common scripts
 ** Logs
@@ -43,7 +43,7 @@ best practices, to provide you with your own virtual network on AWS.*
 ====
 DLM is configured as follows:
 
-. The EC2 tag ( Name: *LCM_TAG* , Value: *XSTORE* ) key-value pair is used to take snapshots.
+. The EC2 tag (Name: *LCM_TAG* , Value: *XSTORE*) key-value pair is used to take snapshots.
 . The most recent three snapshots are retained. 
 . A copy of each snapshot is stored in another AWS Region for data redundancy.
 ====

@@ -163,7 +163,7 @@ Parameters:
       - Small
       - Medium
       - Large
-    Description: The XStore Office Environment Size (S,M,L).
+    Description: The XStore Office Environment Size (S, M, L).
   KeyPairName:
     Description: EC2 key pair name.
     Type: AWS::EC2::KeyPair::KeyName
