@@ -9,8 +9,7 @@ image::../images/architecture_diagram.png[Architecture,width=648,height=439]
 As shown in <<architecture1>>, the Quick Start sets up the following:
 
 * A highly available architecture that spans two Availability Zones.*
-* A VPC configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*
+* A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*
 
 * In the public subnets:
 
@@ -23,30 +22,10 @@ best practices, to provide you with your own virtual network on AWS.*
 ** An Amazon Relational Database Service (Amazon RDS) Oracle database storing the XCenter, XCenter replication, and XAdmin databases.
 ** An Apache Tomcat deployment server running on an EC2 instance for deployments from Oracle Retail Xstore Office.
 ** Oracle WebLogic cluster nodes running on EC2 instances for the deployment of Oracle Retail Xstore Office applications.
-** A Puppet server running on EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.
+** A Puppet server running on an EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.
 
-* Amazon Elastic File System (EFS), which will be mounted by all the instances that are part of the WebLogic cluster. In the reference architecture, we use Amazon EFS for shared storage of the following:
-
-** WebLogic binaries
-** Domain configurations
-** Common scripts
-** Logs
-
-* Amazon Data Lifecycle Manager (DLM) to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes. Automating snapshot management accomplishes the following:
-
-** Protects valuable data by enforcing a regular backup schedule.
-** Retains backups as required by auditors or for internal compliance.
-** Reduces storage costs by deleting outdated backups.
-
-[NOTE]
-====
-DLM is configured as follows:
-
-. The EC2 tag (Name: *LCM_TAG* , Value: *XSTORE*) key-value pair is used to take snapshots.
-. The most recent three snapshots are retained. 
-. A copy of each snapshot is stored in another AWS Region for data redundancy.
-====
-
-* Amazon CloudWatch, a monitoring and observability service built for DevOps Engineers, Developers, Site Reliability Engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications running smoothly.
+* Amazon Elastic File System (EFS) mounted by all the instances that are part of the WebLogic cluster. 
+* Amazon Data Lifecycle Manager (DLM) to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes. (See link:#_storage[Storage].)
+* Amazon CloudWatch for infrastructure monitoring. (See link:#_infrastructure_monitoring[Infrastructure Monitoring].)
 
 *The template that deploys the Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration. 

@@ -810,7 +810,8 @@ p.footer-text a{color:#d7d8d8}
 </ul>
 </li>
 <li><a href="#_post_deployment_steps">Post deployment steps</a></li>
-<li><a href="#_security">Security</a></li>
+<li><a href="#_storage">Storage</a></li>
+<li><a href="#_infrastructure_monitoring">Infrastructure Monitoring</a></li>
 <li><a href="#_support">Support</a></li>
 <li><a href="#_faq">FAQ</a></li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
@@ -981,8 +982,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>A highly available architecture that spans two Availability Zones.*</p>
 </li>
 <li>
-<p>A VPC configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*</p>
+<p>A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
 </li>
 <li>
 <p>In the public subnets:</p>
@@ -1011,79 +1011,19 @@ best practices, to provide you with your own virtual network on AWS.*</p>
 <p>Oracle WebLogic cluster nodes running on EC2 instances for the deployment of Oracle Retail Xstore Office applications.</p>
 </li>
 <li>
-<p>A Puppet server running on EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.</p>
+<p>A Puppet server running on an EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Amazon Elastic File System (EFS), which will be mounted by all the instances that are part of the WebLogic cluster. In the reference architecture, we use Amazon EFS for shared storage of the following:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>WebLogic binaries</p>
+<p>Amazon Elastic File System (EFS) mounted by all the instances that are part of the WebLogic cluster.</p>
 </li>
 <li>
-<p>Domain configurations</p>
+<p>Amazon Data Lifecycle Manager (DLM) to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes. (See <a href="#_storage">Storage</a>.)</p>
 </li>
 <li>
-<p>Common scripts</p>
-</li>
-<li>
-<p>Logs</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Amazon Data Lifecycle Manager (DLM) to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes. Automating snapshot management accomplishes the following:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Protects valuable data by enforcing a regular backup schedule.</p>
-</li>
-<li>
-<p>Retains backups as required by auditors or for internal compliance.</p>
-</li>
-<li>
-<p>Reduces storage costs by deleting outdated backups.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>DLM is configured as follows:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The EC2 tag (Name: <strong>LCM_TAG</strong> , Value: <strong>XSTORE</strong>) key-value pair is used to take snapshots.</p>
-</li>
-<li>
-<p>The most recent three snapshots are retained.</p>
-</li>
-<li>
-<p>A copy of each snapshot is stored in another AWS Region for data redundancy.</p>
-</li>
-</ol>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Amazon CloudWatch, a monitoring and observability service built for DevOps Engineers, Developers, Site Reliability Engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications running smoothly.</p>
+<p>Amazon CloudWatch for infrastructure monitoring. (See <a href="#_infrastructure_monitoring">Infrastructure Monitoring</a>.)</p>
 </li>
 </ul>
 </div>
@@ -1107,7 +1047,7 @@ deploy, and operate your infrastructure and applications on the AWS
 Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with the Oracle Retail Xstore Suite, Oracle database, Oracle Weblogic, Apache Tomcat, and Puppet.</p>
+<p>This Quick Start assumes familiarity with the Oracle Retail Xstore Suite, Oracle database, Oracle WebLogic, Apache Tomcat, and Puppet.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1930,12 +1870,12 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <h2 id="_post_deployment_steps">Post deployment steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Disable the Auto Scaling Group for the Oracle Weblogic Cluster and Apache Tomcat server.</p>
+<p>Disable the Auto Scaling Group for the Oracle WebLogic Cluster and Apache Tomcat server.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select Auto Scaling Group for Oracle Weblogic Server.</p>
+<p>Select Auto Scaling Group for Oracle WebLogic Server.</p>
 </li>
 <li>
 <p>In the <strong>Details</strong> tab, select the <strong>Edit</strong> button.</p>
@@ -1951,11 +1891,36 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </div>
 </div>
 <div class="sect1">
-<h2 id="_security">Security</h2>
+<h2 id="_storage">Storage</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><strong>Monitoring Infrastructure</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>As shown in <a href="#architecture1">Figure 1</a>, Amazon Data Lifecycle Manager (DLM) is used to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes.</p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>DLM is configured as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The EC2 tag (Name: <strong>LCM_TAG</strong> , Value: <strong>XSTORE</strong>) key-value pair is used to take snapshots.</p>
+</li>
+<li>
+<p>The most recent three snapshots are retained.</p>
+</li>
+<li>
+<p>A copy of each snapshot is stored in another AWS Region for data redundancy.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_infrastructure_monitoring">Infrastructure Monitoring</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>After implementing your Oracle WebLogic applications in the AWS Cloud, you can continue to use the monitoring tools you are familiar with to monitor your Oracle WebLogic environment and the application you deployed on WebLogic.</p>
 </div>
@@ -1978,6 +1943,41 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <div class="sectionbody">
 <div class="paragraph">
 <p>The SkillNet Solutions, Inc. support team is standing by to assist you with setting up Oracle Xstore Office on your AWS environment. Send an email to <a href="mailto:support_xstoreoffice@skillnetinc.com">support_xstoreoffice@skillnetinc.com</a> to contact the support team.</p>
+</div>
+<div class="paragraph">
+<p>Automating snapshot management accomplishes the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Protects valuable data by enforcing a regular backup schedule.</p>
+</li>
+<li>
+<p>Retains backups as required by auditors or for internal compliance.</p>
+</li>
+<li>
+<p>Reduces storage costs by deleting outdated backups.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the reference architecture, we use Amazon EFS for shared storage of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>WebLogic binaries</p>
+</li>
+<li>
+<p>Domain configurations</p>
+</li>
+<li>
+<p>Common scripts</p>
+</li>
+<li>
+<p>Logs</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
