@@ -3,17 +3,23 @@
 
 == Post deployment steps
 // If Post-deployment steps are required, add them here. If not, remove the heading
-Disable the Auto Scaling Group for the Oracle Weblogic Cluster and Apache Tomcat server.
+Disable the Auto Scaling Group for the Oracle WebLogic Cluster and Apache Tomcat server.
 
-. Select Auto Scaling Group for Oracle Weblogic Server.
+. Select Auto Scaling Group for Oracle WebLogic Server.
 . In the *Details* tab, select the *Edit* button.
 . In the *Suspended Processes* list box, select all the processes to suspend.
 . Repeat steps 1-3 for Apache Tomcat Server.
 
-== Security
-// Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
+== Storage
+* As shown in <<architecture1>>, Amazon Data Lifecycle Manager (DLM) is used to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes.
 
-*Monitoring Infrastructure* 
+DLM is configured as follows:
+
+. The EC2 tag (Name: *LCM_TAG* , Value: *XSTORE*) key-value pair is used to take snapshots.
+. The most recent three snapshots are retained. 
+. A copy of each snapshot is stored in another AWS Region for data redundancy.
+
+== Infrastructure Monitoring
 
 After implementing your Oracle WebLogic applications in the AWS Cloud, you can continue to use the monitoring tools you are familiar with to monitor your Oracle WebLogic environment and the application you deployed on WebLogic.
 
@@ -28,3 +34,16 @@ With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an
 == Support
 
 The {partner-company-name} support team is standing by to assist you with setting up {partner-product-name} on your AWS environment. Send an email to support_xstoreoffice@skillnetinc.com to contact the support team.
+
+Automating snapshot management accomplishes the following:
+
+** Protects valuable data by enforcing a regular backup schedule.
+** Retains backups as required by auditors or for internal compliance.
+** Reduces storage costs by deleting outdated backups.
+
+In the reference architecture, we use Amazon EFS for shared storage of the following:
+
+** WebLogic binaries
+** Domain configurations
+** Common scripts
+** Logs
