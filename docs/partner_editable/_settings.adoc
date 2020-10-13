@@ -1,7 +1,7 @@
 :quickstart-project-name: quickstart-skillnet-xstoreoffice
 :partner-product-name: Oracle Xstore Office
 :partner-company-name: SkillNet Solutions, Inc.
-:doc-month: September
+:doc-month: October
 :doc-year: 2020
 :partner-contributors: Satheesh Kumar Thiyagarajan - Skillnet Solutions, Inc.
 :quickstart-contributors: Dave May - Partner Solution Architect, Quick Start team

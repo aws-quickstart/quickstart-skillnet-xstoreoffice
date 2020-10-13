@@ -9,46 +9,46 @@
 (`PrivateSubnet2CIDR`)|`10.0.32.0/19`|CIDR block for private subnet 2 located in Availability Zone 2.|Public subnet 1 CIDR
 (`PublicSubnet1CIDR`)|`10.0.128.0/20`|CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.|Public subnet 2 CIDR
 (`PublicSubnet2CIDR`)|`10.0.144.0/20`|CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.|Allowed bastion external access CIDR
-(`RemoteAccessCIDR`)|`**__Requires input__**`|CIDR IP range that is permitted to access the bastion/rdgw. We recommend that you set this value to a trusted IP range.
+(`RemoteAccessCIDR`)|`**__Requires input__**`|CIDR IP range that is permitted to access the bastion/Remote Desktop Gateway (RD Gateway). We recommend that you set this value to a trusted IP range.
 |===
 .XStore Office Environment configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|Environment Size
-(`EnvironmentSize`)|`Small`|The XStore Office Environment Size (S,M,L).|Key Pair Name
+(`EnvironmentSize`)|`Small`|XStore Office Environment Size (S, M, L).|Key Pair Name
 (`KeyPairName`)|`**__Requires input__**`|EC2 key pair name.|Stack Name Prefix
-(`StackPrefix`)|`XStoreOffice`|The prefix name to all the associated resources in the stack.|Puppet Server FQDN
+(`StackPrefix`)|`XStoreOffice`|Prefix name for all the associated resources in the stack.|Puppet Server FQDN
 (`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign Fully Qualified Domain Name for Puppet Server.|SSL Certificate ARN for Deployment Server ALB
-(`DeployServerSSLCertificateArn`)|`**__Requires input__**`|The SSL certificate ARN for Deployment Server Load Balancer.|SSL Certificate ARN for XAdmin server ALB
-(`XAdminSSLCertificateArn`)|`**__Requires input__**`|The SSL certificate ARN for XAdmin Application Load Balancer.
+(`DeployServerSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for Deployment Server Load Balancer.|SSL Certificate ARN for XAdmin server ALB
+(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin Application Load Balancer.
 |===
 .Weblogic Cluster Storage configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|EFS Volume Name
-(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|The name to be used for the EFS volume.|EFS Volume Mount Point
-(`EFSMountPoint`)|`/home/oracle`|The Linux mount point for the EFS volume.
+(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|Name to be used for the EFS volume.|EFS Volume Mount Point
+(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the EFS volume.
 |===
 .Oracle Database configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|DB Name
-(`DBName`)|`orcldb`|The Oracle DBName (SID) name.|Admin User
-(`Admin`)|`xstore`|The Oracle database admin account username.|Admin Password
+(`DBName`)|`orcldb`|Oracle DBName (SID) name.|Admin User
+(`Admin`)|`xstore`|Oracle database admin account username.|Admin Password
 (`AdminPassword`)|`Test1234`|The Oracle database admin account password.|DB Allocated Storage
-(`DBAllocatedStorage`)|`100`|The size of the database in gigabytes (GiB).|DB Instance Class
-(`DBInstanceClass`)|`db.r4.large`|The name of the compute and memory capacity class of the DB instance.|Oracle Edition
-(`OracleEdition`)|`oracle-ee`|The Oracle Edition.|Oracle Family
-(`Family`)|`oracle-ee-12.1`|The Oracle Family Engine.|Oracle Compatible
-(`Compatible`)|`12.1.0.2`|The Oracle Family compatible version Ex 12.1.0.2|Oracle Engine Version
-(`EngineVersion`)|`12.1.0.2.v7`|The Oracle Family compatible version Ex 12.1.0.2.v7|Oracle License Model
-(`LicenseModel`)|`bring-your-own-license`|The Oracle License type.
+(`DBAllocatedStorage`)|`100`|Size of the database in gigabytes (GiB).|DB Instance Class
+(`DBInstanceClass`)|`db.r4.large`|Name of the compute and memory capacity class of the database instance.|Oracle Edition
+(`OracleEdition`)|`oracle-ee`|Oracle Edition.|Oracle Family
+(`Family`)|`oracle-ee-12.1`|Oracle Family Engine.|Oracle Compatible
+(`Compatible`)|`12.1.0.2`|Oracle Family compatible version (e.g., 12.1.0.2.)|Oracle Engine Version
+(`EngineVersion`)|`12.1.0.2.v7`|Oracle Family compatible version (e.g., 12.1.0.2.v7.)|Oracle License Model
+(`LicenseModel`)|`bring-your-own-license`|Oracle License type.
 |===
 .Backup configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|**NO_LABEL**
-(`DLMCrossRegionCopy`)|`us-east-2`|The Cross Region to copy the EC2 instance snapshots for backup.
+(`DLMCrossRegionCopy`)|`us-east-2`|Cross Region to copy the EC2 instance snapshots for backup.
 |===
 .AWS Quick Start configuration
 [width="100%",cols="16%,11%,73%",options="header",]
@@ -56,5 +56,5 @@
 |Parameter label (name) |Default value|Description|Quick Start S3 bucket name
 (`QSS3BucketName`)|`aws-quickstart`|S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).|Quick Start S3 bucket region
 (`QSS3BucketRegion`)|`us-east-1`|The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.|Quick Start S3 Key Prefix
-(`QSS3KeyPrefix`)|`quickstart-skillnet-xstoreoffice/`|S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/).
+(`QSS3KeyPrefix`)|`quickstart-skillnet-xstoreoffice/`|S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).
 |===
