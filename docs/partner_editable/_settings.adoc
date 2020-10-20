@@ -3,10 +3,11 @@
 :partner-company-name: SkillNet Solutions, Inc.
 :doc-month: October
 :doc-year: 2020
-:partner-contributors: Satheesh Kumar Thiyagarajan - Skillnet Solutions, Inc.
-:quickstart-contributors: Dave May - Partner Solution Architect, Quick Start team
+:partner-contributors: Satheesh Kumar Thiyagarajan, Skillnet Solutions, Inc.
+:quickstart-contributors: Dave May, AWS Quick Start team
 :deployment_time: 1 hour
 :default_deployment_region: us-east-1
+:parameters_as_appendix:
 // Uncomment these two attributes if you are leveraging
 // - an AWS Marketplace listing.
 // Additional content will be auto-generated based on these attributes.

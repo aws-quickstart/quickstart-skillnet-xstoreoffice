@@ -4,7 +4,7 @@ Description: This template creates a VPC infrastructure for a multi-AZ, multi-ti
     WARNING This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r53pe6g1)
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Parameters for launching into a new VPC"
+    EntrypointName: "Parameters for deploying into a new VPC"
   AWS::CloudFormation::Interface:
     ParameterGroups:
     - Label:
@@ -18,7 +18,7 @@ Metadata:
       - PublicSubnet2CIDR
       - RemoteAccessCIDR
     - Label:
-        default: XStore Office Environment configuration
+        default: XStore Office environment configuration
       Parameters:
       - EnvironmentSize
       - KeyPairName
@@ -27,12 +27,12 @@ Metadata:
       - DeployServerSSLCertificateArn
       - XAdminSSLCertificateArn
     - Label:
-        default: Weblogic Cluster Storage configuration
+        default: WebLogic cluster storage configuration
       Parameters:  
       - EFSVolumeName
       - EFSMountPoint
     - Label:
-        default: Oracle Database configuration
+        default: Oracle database configuration
       Parameters:
       - DBName
       - Admin
@@ -72,50 +72,50 @@ Metadata:
       QSS3BucketName:
         default: Quick Start S3 bucket name
       QSS3BucketRegion:
-        default: Quick Start S3 bucket region
+        default: Quick Start S3 bucket Region
       QSS3KeyPrefix:
-        default: Quick Start S3 Key Prefix
+        default: Quick Start S3 key prefix
       EnvironmentSize:
-        default: Environment Size
+        default: Environment size
       KeyPairName:
-        default: Key Pair Name
+        default: Key pair name
       StackPrefix:
-        default: Stack Name Prefix
+        default: Stack name prefix
       PuppetServerFQDN:
-        default: Puppet Server FQDN
+        default: Puppet server FQDN
       DeployServerSSLCertificateArn:
-        default: SSL Certificate ARN for Deployment Server ALB
+        default: SSL certificate ARN for deployment server ALB
       XAdminSSLCertificateArn:
-        default: SSL Certificate ARN for XAdmin server ALB
+        default: SSL certificate ARN for XAdmin server ALB
       EFSVolumeName:
-        default: EFS Volume Name
+        default: EFS volume name
       EFSMountPoint:
-        default: EFS Volume Mount Point
+        default: EFS volume mount point
       DBName:
-        default: DB Name
+        default: Database Name
       Admin:
-        default: Admin User 
+        default: Administrator 
       AdminPassword:
-        default: Admin Password
+        default: Admin password
       DBAllocatedStorage:
-        default: DB Allocated Storage
+        default: Database allocated storage
       DBInstanceClass:
-        default: DB Instance Class
+        default: Database instance class
       OracleEdition:
-        default: Oracle Edition
+        default: Oracle edition
       Family:
-        default: Oracle Family
+        default: Oracle family
       Compatible:
-        default: Oracle Compatible
+        default: Oracle compatible
       EngineVersion:
-        default: Oracle Engine Version
+        default: Oracle engine version
       LicenseModel:
-        default: Oracle License Model
+        default: Oracle license model
+      DLMCrossRegionCopy:
+        default: DLM cross-Region copy
 Parameters:
   AvailabilityZones:
-    Description: List of Availability Zones to use for the subnets in the VPC. Only
-      two Availability Zones are used for this deployment, and the logical order of
-      your selections is preserved.
+    Description: Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.
     Type: List<AWS::EC2::AvailabilityZone::Name>
   PrivateSubnet1CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
@@ -155,7 +155,7 @@ Parameters:
     Type: String
   QSS3BucketRegion:
     Default: 'us-east-1'
-    Description: The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.
+    Description: AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.
     Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
@@ -177,7 +177,7 @@ Parameters:
     Description: CIDR block for the VPC.
     Type: String
   DLMCrossRegionCopy:
-    Description: Cross Region to copy the EC2 instance snapshots for backup. 
+    Description: Cross-Region to copy the EC2 instance snapshots for backup. 
     Type: String
     Default: us-east-2
   EnvironmentSize:
@@ -187,7 +187,7 @@ Parameters:
       - Small
       - Medium
       - Large
-    Description: XStore Office Environment Size (S, M, L).
+    Description: XStore Office environment size (S, M, L).
   KeyPairName:
     Description: EC2 key pair name.
     Type: AWS::EC2::KeyPair::KeyName
@@ -202,15 +202,15 @@ Parameters:
   PuppetServerFQDN:
     Type: String
     Default: "puppet.skillnetaws.com"
-    Description: Assign Fully Qualified Domain Name for Puppet Server.
+    Description: Assign fully qualified domain name for Puppet server.
   DeployServerSSLCertificateArn:
     Type: String
-    Description: SSL certificate ARN for Deployment Server Load Balancer.
+    Description: SSL certificate ARN for deployment server load balancer.
   XAdminSSLCertificateArn:
     Type: String
-    Description: SSL certificate ARN for XAdmin Application Load Balancer.
+    Description: SSL certificate ARN for XAdmin application load balancer.
   EFSVolumeName:
-    Description: Name to be used for the EFS volume.
+    Description: EFS volume name.
     Type: String
     MinLength: '1'
     Default: XStoreOfficeWlsEFS
@@ -221,7 +221,7 @@ Parameters:
     Default: "/home/oracle"
   DBName:
     Default: orcldb
-    Description: Oracle DBName (SID) name.
+    Description: Oracle database name (SID).
     Type: String
     MinLength: '1'
     MaxLength: '64'
@@ -238,7 +238,7 @@ Parameters:
   AdminPassword:
     Default: Test1234
     NoEcho: 'true'
-    Description: The Oracle database admin account password.
+    Description: Oracle database admin account password.
     Type: String
     MinLength: '8'
     MaxLength: '41'
@@ -275,9 +275,9 @@ Parameters:
     - oracle-se
     - oracle-se1
     - oracle-se2 
-    ConstraintDescription: Must select a valid Oracle Edition.
+    ConstraintDescription: Must select a valid Oracle edition.
     Default: oracle-ee
-    Description: Oracle Edition.
+    Description: Oracle edition.
     Type: String
   Family:
     AllowedValues:
@@ -303,7 +303,7 @@ Parameters:
     - oracle-se2-19.0    
     ConstraintDescription: Must select a valid Oracle family.
     Default: oracle-ee-12.1
-    Description: Oracle Family Engine.
+    Description: Oracle family engine.
     Type: String
   Compatible:
     AllowedValues:
@@ -313,7 +313,7 @@ Parameters:
     - 19.0.0.0
     ConstraintDescription: Must select a valid Oracle compatible version to family.
     Default: 12.1.0.2
-    Description: Oracle Family compatible version (e.g., 12.1.0.2.)
+    Description: Oracle family compatible version (e.g., 12.1.0.2.)
     Type: String
   EngineVersion:
     AllowedValues:
@@ -373,7 +373,7 @@ Parameters:
     - 19.0.0.0.ru-2019-10.rur-2019-10.r1    
     ConstraintDescription: Must select a valid Oracle compatible version to family.
     Default: 12.1.0.2.v7
-    Description: Oracle Family compatible version (e.g., 12.1.0.2.v7.)
+    Description: Oracle family compatible version (e.g., 12.1.0.2.v7.)
     Type: String
   LicenseModel:
     AllowedValues:
@@ -381,7 +381,7 @@ Parameters:
     - bring-your-own-license
     ConstraintDescription: Must select a valid Oracle license to be use.
     Default: bring-your-own-license
-    Description: Oracle License type.
+    Description: Oracle license type.
     Type: String
 Conditions:
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
