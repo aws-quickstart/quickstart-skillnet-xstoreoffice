@@ -1,0 +1,57 @@
+
+.Network Configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|VPC ID
+(`UserSpecifiedVPCId`)|`**__Requires input__**`|The VPC ID where to deploy XStore Office in.|First Private Subnet ID
+(`Subnet1ID`)|`**__Requires input__**`|The First Private Subnet ID.|Second Private Subnet ID
+(`Subnet2ID`)|`**__Requires input__**`|The Second Private Subnet ID. Select Subnet ID with different AZ that you selected from the First Private Subnet ID.
+|===
+.AWS Quick Start configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Quick Start S3 bucket
+(`QSS3BucketName`)|`aws-quickstart`|S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).|Quick Start S3 bucket Region
+(`QSS3BucketRegion`)|`us-east-1`|AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. If you use your own bucket, specify that value.|Quick Start S3 key prefix
+(`QSS3KeyPrefix`)|`quickstart-skillnet-xstoreoffice/`|S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/).
+|===
+.XStore Office Environment configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Environment Size
+(`EnvironmentSize`)|`Small`|The XStore Office Environment Size (S,M,L).|Key Pair Name
+(`KeyPairName`)|`**__Requires input__**`|EC2 key pair name.|Stack Name Prefix
+(`StackPrefix`)|`XStoreOffice`|The prefix name to all the associated resources in the stack.|Proxy Server URL
+(`ProxyServer`)|`http://192.168.50.197:3128`|The proxy server URL to have internet access.|Puppet Server FQDN
+(`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign Fully Qualified Domain Name for Puppet Server.|SSL Certificate ARN for Deployment Server ALB
+(`DeployServerSSLCertificateArn`)|`**__Requires input__**`|The SSL certificate ARN for Deployment Server Load Balancer.|SSL Certificate ARN for XAdmin server ALB
+(`XAdminSSLCertificateArn`)|`**__Requires input__**`|The SSL certificate ARN for XAdmin Application Load Balancer.
+|===
+.Weblogic Cluster Storage configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|EFS Volume Name
+(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|The name to be used for the EFS volume.|EFS Volume Mount Point
+(`EFSMountPoint`)|`/home/oracle`|The Linux mount point for the EFS volume.
+|===
+.Oracle Database configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|DB Name
+(`DBName`)|`orcldb`|The Oracle DBName (SID) name.|Admin User
+(`Admin`)|`xstore`|The Oracle database admin account username.|Admin Password
+(`AdminPassword`)|`Test1234`|The Oracle database admin account password.|DB Allocated Storage
+(`DBAllocatedStorage`)|`100`|The size of the database in gigabytes (GiB).|DB Instance Class
+(`DBInstanceClass`)|`db.r4.large`|The name of the compute and memory capacity class of the DB instance.|Oracle Edition
+(`OracleEdition`)|`oracle-ee`|The Oracle Edition.|Oracle Family
+(`Family`)|`oracle-ee-12.1`|The Oracle Family Engine.|Oracle Compatible
+(`Compatible`)|`12.1.0.2`|The Oracle Family compatible version Ex 12.1.0.2|Oracle Engine Version
+(`EngineVersion`)|`12.1.0.2.v7`|The Oracle Family compatible version Ex 12.1.0.2.v7|Oracle License Model
+(`LicenseModel`)|`license-included`|The Oracle License type.
+|===
+.Backup configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|DLM Cross Region Name
+(`DLMCrossRegionCopy`)|`us-east-2`|The Cross Region to copy the EC2 instance snapshots for backup.
+|===

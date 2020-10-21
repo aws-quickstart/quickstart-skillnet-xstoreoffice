@@ -805,15 +805,19 @@ p.footer-text a{color:#d7d8d8}
 <ul class="sectlevel2">
 <li><a href="#_sign_in_to_your_aws_account">Sign in to your AWS account</a></li>
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
-<li><a href="#_parameters_for_launching_into_a_new_vpc">Parameters for launching into a new VPC</a></li>
-<li><a href="#_parameters_for_launching_into_an_existing_vpc">Parameters for launching into an existing VPC</a></li>
 </ul>
 </li>
 <li><a href="#_post_deployment_steps">Post deployment steps</a></li>
 <li><a href="#_storage">Storage</a></li>
-<li><a href="#_infrastructure_monitoring">Infrastructure Monitoring</a></li>
+<li><a href="#_infrastructure_monitoring">Infrastructure monitoring</a></li>
 <li><a href="#_support">Support</a></li>
 <li><a href="#_faq">FAQ</a></li>
+<li><a href="#_parameter_reference">Parameter reference</a>
+<ul class="sectlevel2">
+<li><a href="#_parameters_for_deploying_into_an_existing_vpc">Parameters for deploying into an existing VPC</a></li>
+<li><a href="#_parameters_for_deploying_into_a_new_vpc">Parameters for deploying into a new VPC</a></li>
+</ul>
+</li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
 <li><a href="#_quick_start_reference_deployments">Quick Start reference deployments</a></li>
 <li><a href="#_github_repository">GitHub repository</a></li>
@@ -833,8 +837,8 @@ p.footer-text a{color:#d7d8d8}
 </div>
 <div class="paragraph text-center">
 <p><strong>October, 2020</strong><br>
-<em>Satheesh Kumar Thiyagarajan - Skillnet Solutions, Inc.</em><br>
-<em>Dave May - Partner Solution Architect, Quick Start team</em></p>
+<em>Satheesh Kumar Thiyagarajan, Skillnet Solutions, Inc.</em><br>
+<em>Dave May, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
 <table>
@@ -880,7 +884,7 @@ collaborated with AWS on the content of the Quick Start.
 <h2 id="_oracle_xstore_office_on_aws">Oracle Xstore Office on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Oracle Retail Xstore Suite enables in-store retail functions in medium to large enterprises across geographical regions. It relies on centrally-hosted server applications to which the distributed in-store clients connect for data and transactional needs.</p>
+<p>The Oracle Retail Xstore suite enables in-store retail functions in medium to large enterprises across geographical Regions. It relies on centrally-hosted server applications to which the distributed in-store clients connect for data and transactional needs.</p>
 </div>
 <div class="paragraph">
 <p>Traditionally these server applications have been hosted on premises, typically supporting connections from stores located in multiple time zones. The variety of local internet service providers in use in this architecture pose risks to availability, latency, and scaling to support peak loads. Thus, retailers are looking to adopt the AWS Cloud to host the Oracle Retail Xstore Office workload and realize the following benefits:</p>
@@ -938,7 +942,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following licenses are required for this Quick Start, with combinations of bring-your-own-license (BYOL) and AWS-managed options:</p>
+<p>The following licenses are required for this Quick Start, with combinations of bring-your-own-license (BYOL) and AWS managed options:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -965,7 +969,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Deploying this Quick Start for a new Virtual Private Cloud (VPC) with default parameters builds the following Oracle Xstore Office environment in the Amazon Web Services (AWS) Cloud.</p>
+<p>Deploying this Quick Start for a new Virtual Private Cloud (VPC) with default parameters builds the following Oracle Xstore Office environment in the AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
 <div class="content">
@@ -982,7 +986,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>A highly available architecture that spans two Availability Zones.*</p>
 </li>
 <li>
-<p>A virtual private cloud (VPC) configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
+<p>A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
 </li>
 <li>
 <p>In the public subnets:</p>
@@ -992,7 +996,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>Managed network address translation (NAT) gateways to allow outbound internet access for resources in the private subnets.*</p>
 </li>
 <li>
-<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon Elasic Compute Cloud (Amazon EC2) instances in public and private subnets.*</p>
+<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon EC2 instances in public and private subnets.*</p>
 </li>
 </ul>
 </div>
@@ -1005,25 +1009,25 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>An Amazon Relational Database Service (Amazon RDS) Oracle database storing the XCenter, XCenter replication, and XAdmin databases.</p>
 </li>
 <li>
-<p>An Apache Tomcat deployment server running on an EC2 instance for deployments from Oracle Retail Xstore Office.</p>
+<p>An Apache Tomcat deployment server running on an Amazon EC2 instance for deployments from Oracle Retail Xstore Office.</p>
 </li>
 <li>
-<p>Oracle WebLogic cluster nodes running on EC2 instances for the deployment of Oracle Retail Xstore Office applications.</p>
+<p>Oracle WebLogic cluster nodes running on Amazon EC2 instances for the deployment of Oracle Retail Xstore Office applications.</p>
 </li>
 <li>
-<p>A Puppet server running on an EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.</p>
+<p>A Puppet server running on an Amazon EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Amazon Elastic File System (EFS) mounted by all the instances that are part of the WebLogic cluster.</p>
+<p>Amazon Elastic File System (Amazon EFS) mounted by all the instances that are part of the WebLogic cluster.</p>
 </li>
 <li>
-<p>Amazon Data Lifecycle Manager (DLM) to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes. (See <a href="#_storage">Storage</a>.)</p>
+<p>Amazon Data Lifecycle Manager (Amazon DLM) to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (Amazon EBS) volumes.</p>
 </li>
 <li>
-<p>Amazon CloudWatch for infrastructure monitoring. (See <a href="#_infrastructure_monitoring">Infrastructure Monitoring</a>.)</p>
+<p>Amazon CloudWatch for infrastructure monitoring.</p>
 </li>
 </ul>
 </div>
@@ -1047,7 +1051,7 @@ deploy, and operate your infrastructure and applications on the AWS
 Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with the Oracle Retail Xstore Suite, Oracle database, Oracle WebLogic, Apache Tomcat, and Puppet.</p>
+<p>This Quick Start assumes familiarity with the Oracle Retail Xstore suite, Oracle database, Oracle WebLogic, Apache Tomcat, and Puppet.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1127,6 +1131,63 @@ Cloud.</p>
 <li>
 <p>us-east-1 (N. Virginia)</p>
 </li>
+<li>
+<p>us-east-2 (Ohio)</p>
+</li>
+<li>
+<p>us-west-1 (N. California)</p>
+</li>
+<li>
+<p>us-west-2 (Oregon)</p>
+</li>
+<li>
+<p>ca-central-1 (Canada Central)</p>
+</li>
+<li>
+<p>eu-central-1 (Frankfurt)</p>
+</li>
+<li>
+<p>eu-west-1 (Ireland)</p>
+</li>
+<li>
+<p>eu-west-2 (London)</p>
+</li>
+<li>
+<p>eu-west-3 (Paris)</p>
+</li>
+<li>
+<p>ap-southeast-1 (Singapore)</p>
+</li>
+<li>
+<p>ap-southeast-2 (Sydney)</p>
+</li>
+<li>
+<p>ap-south-1 (Mumbai)</p>
+</li>
+<li>
+<p>ap-northeast-1 (Tokyo)</p>
+</li>
+<li>
+<p>ap-northeast-2 (Seoul)</p>
+</li>
+<li>
+<p>sa-east-1 (South America)</p>
+</li>
+<li>
+<p>eu-north-1 (Stockholm)</p>
+</li>
+<li>
+<p>ap-east-1 (Hong Kong)</p>
+</li>
+<li>
+<p>me-south-1 (Bahrain)</p>
+</li>
+<li>
+<p>af-south-1 (Cape Town)</p>
+</li>
+<li>
+<p>eu-south-1 (Milan)</p>
+</li>
 </ul>
 </div>
 <div class="admonitionblock tip">
@@ -1196,7 +1257,7 @@ Certain Regions are available on an opt-in basis. Refer to the AWS Documentation
 <p>Sign in to your AWS account at <a href="https://aws.amazon.com" class="bare">https://aws.amazon.com</a> with an IAM user role that has the necessary permissions. For details, see <a href="#_planning_the_deployment">Planning the deployment</a> earlier in this guide.</p>
 </li>
 <li>
-<p>Make sure that your AWS account is configured correctly, as discussed in the <a href="#_technical_requirements">Technical requirements</a> section.</p>
+<p>Ensure that your AWS account is configured correctly, as discussed in the <a href="#_technical_requirements">Technical requirements</a> section.</p>
 </li>
 </ol>
 </div>
@@ -1242,13 +1303,13 @@ You are responsible for the cost of the AWS services used while running this Qui
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If you’re deploying Oracle Xstore Office into an existing VPC, make sure that your VPC has two private subnets in different Availability Zones for the workload instances, and that the subnets aren’t shared. This Quick Start doesn’t support <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">shared subnets</a>. These subnets require <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables, to allow the instances to download packages and software without exposing them to the internet.
+If you’re deploying Oracle Xstore Office into an existing VPC, ensure that your VPC has two private subnets in different Availability Zones for the workload instances, and that the subnets aren’t shared. This Quick Start doesn’t support <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">shared subnets</a>. These subnets require <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables, to allow the instances to download packages and software without exposing them to the internet.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Also, make sure that the domain name option in the DHCP options is configured as explained in the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">Amazon VPC documentation</a>. You provide your VPC settings when you launch the Quick Start.</p>
+<p>Also, ensure that the domain name option in the DHCP options is configured as explained in the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">Amazon VPC documentation</a>. You provide your VPC settings when you launch the Quick Start.</p>
 </div>
 <div class="paragraph">
 <p>Each deployment takes about 1 hour to complete.</p>
@@ -1256,7 +1317,7 @@ If you’re deploying Oracle Xstore Office into an existing VPC, make sure that 
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Oracle Xstore Office will be built. The template is launched in the us-east-1 Region by default.</p>
+<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Oracle Xstore Office is built. The template is launched in the us-east-1 Region by default.</p>
 </li>
 </ol>
 </div>
@@ -1266,12 +1327,9 @@ If you’re deploying Oracle Xstore Office into an existing VPC, make sure that 
 <p>On the <strong>Create stack</strong> page, keep the default setting for the template URL, and then choose <strong>Next</strong>.</p>
 </li>
 <li>
-<p>On the <strong>Specify stack details</strong> page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary.</p>
+<p>On the <strong>Specify stack details</strong> page, change the stack name if needed. For details on each parameter, see the <a href="#_parameter_reference">Parameter reference</a> section of this guide.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>In the following tables, parameters are listed by category and described separately for the deployment options. When you finish reviewing and customizing the parameters, choose <strong>Next</strong>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1286,558 +1344,6 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tr>
 </table>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_parameters_for_launching_into_a_new_vpc">Parameters for launching into a new VPC</h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Network configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Availability Zones
-(<code>AvailabilityZones</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of Availability Zones to use for the subnets in the VPC. Only two Availability Zones are used for this deployment, and the logical order of your selections is preserved.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPC CIDR
-(<code>VPCCIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/16</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the VPC.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1 CIDR
-(<code>PrivateSubnet1CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2 CIDR
-(<code>PrivateSubnet2CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.32.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 CIDR
-(<code>PublicSubnet1CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.128.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 CIDR
-(<code>PublicSubnet2CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.144.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed bastion external access CIDR
-(<code>RemoteAccessCIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion/Remote Desktop Gateway (RD Gateway). We recommend that you set this value to a trusted IP range.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. XStore Office Environment configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environment Size
-(<code>EnvironmentSize</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office Environment Size (S, M, L).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key Pair Name
-(<code>KeyPairName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key pair name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stack Name Prefix
-(<code>StackPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOffice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix name for all the associated resources in the stack.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Puppet Server FQDN
-(<code>PuppetServerFQDN</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>puppet.skillnetaws.com</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assign Fully Qualified Domain Name for Puppet Server.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Certificate ARN for Deployment Server ALB
-(<code>DeployServerSSLCertificateArn</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for Deployment Server Load Balancer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Certificate ARN for XAdmin server ALB
-(<code>XAdminSSLCertificateArn</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Weblogic Cluster Storage configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS Volume Name
-(<code>EFSVolumeName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name to be used for the EFS volume.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS Volume Mount Point
-(<code>EFSMountPoint</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the EFS volume.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Oracle Database configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Name
-(<code>DBName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle DBName (SID) name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin User
-(<code>Admin</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account username.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin Password
-(<code>AdminPassword</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Oracle database admin account password.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Allocated Storage
-(<code>DBAllocatedStorage</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Size of the database in gigabytes (GiB).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Instance Class
-(<code>DBInstanceClass</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.r4.large</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the compute and memory capacity class of the database instance.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Edition
-(<code>OracleEdition</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Edition.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family
-(<code>Family</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee-12.1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family Engine.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Compatible
-(<code>Compatible</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family compatible version (e.g., 12.1.0.2.)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Engine Version
-(<code>EngineVersion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family compatible version (e.g., 12.1.0.2.v7.)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle License Model
-(<code>LicenseModel</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bring-your-own-license</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle License type.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Backup configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NO_LABEL</strong>
-(<code>DLMCrossRegionCopy</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cross Region to copy the EC2 instance snapshots for backup.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. AWS Quick Start configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket name
-(<code>QSS3BucketName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket region
-(<code>QSS3BucketRegion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 Key Prefix
-(<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-skillnet-xstoreoffice/</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_parameters_for_launching_into_an_existing_vpc">Parameters for launching into an existing VPC</h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Network configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPC ID
-(<code>VPCID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the VPC.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1 ID
-(<code>PrivateSubnet1ID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2 ID
-(<code>PrivateSubnet2ID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 ID
-(<code>PublicSubnet1ID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 ID
-(<code>PublicSubnet2ID</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed bastion external access CIDR
-(<code>RemoteAccessCIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion/Remote Desktop Gateway (RD Gateway). We recommend that you set this value to a trusted IP range.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. XStore Office Environment configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environment Size
-(<code>EnvironmentSize</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The XStore Office Environment Size (S, M, L).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key Pair Name
-(<code>KeyPairName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key pair name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stack Name Prefix
-(<code>StackPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOffice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix name for all the associated resources in the stack.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Puppet Server FQDN
-(<code>PuppetServerFQDN</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>puppet.skillnetaws.com</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assign Fully Qualified Domain Name for Puppet Server.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Certificate ARN for Deployment Server ALB
-(<code>DeployServerSSLCertificateArn</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for Deployment Server Load Balancer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Certificate ARN for XAdmin server ALB
-(<code>XAdminSSLCertificateArn</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. Weblogic Cluster Storage configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS Volume Name
-(<code>EFSVolumeName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name to be used for the EFS volume.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS Volume Mount Point
-(<code>EFSMountPoint</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the EFS volume.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. Oracle Database configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Name
-(<code>DBName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle DBName (SID) name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin User
-(<code>Admin</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account username.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin Password
-(<code>AdminPassword</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account password.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Allocated Storage
-(<code>DBAllocatedStorage</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Size of the database in gigabytes (GiB).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DB Instance Class
-(<code>DBInstanceClass</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.r4.large</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the compute and memory capacity class of the database instance.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Edition
-(<code>OracleEdition</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Edition.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family
-(<code>Family</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee-12.1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family Engine.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Compatible
-(<code>Compatible</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family compatible version (e.g., 12.1.0.2.)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Engine Version
-(<code>EngineVersion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family compatible version (e.g., 12.1.0.2.v7.)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle License Model
-(<code>LicenseModel</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bring-your-own-license</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle License type.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. Backup configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NO_LABEL</strong>
-(<code>DLMCrossRegionCopy</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Cross Region to copy the EC2 instance snapshots for backup.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. AWS Quick Start configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket name
-(<code>QSS3BucketName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket region
-(<code>QSS3BucketRegion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 Key Prefix
-(<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-skillnet-xstoreoffice/</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).</p></td>
-</tr>
-</tbody>
-</table>
 <div class="olist arabic">
 <ol class="arabic" start="5">
 <li>
@@ -1870,21 +1376,21 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <h2 id="_post_deployment_steps">Post deployment steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Disable the Auto Scaling Group for the Oracle WebLogic Cluster and Apache Tomcat server.</p>
+<p>Disable the Auto Scaling group for the Oracle WebLogic cluster and Apache Tomcat server.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select Auto Scaling Group for Oracle WebLogic Server.</p>
+<p>Choose Auto Scaling group for the Oracle WebLogic server.</p>
 </li>
 <li>
-<p>In the <strong>Details</strong> tab, select the <strong>Edit</strong> button.</p>
+<p>On the <strong>Details</strong> tab, select the <strong>Edit</strong> button.</p>
 </li>
 <li>
-<p>In the <strong>Suspended Processes</strong> list box, select all the processes to suspend.</p>
+<p>On the <strong>Suspended processes</strong> list box, select all the processes to suspend.</p>
 </li>
 <li>
-<p>Repeat steps 1-3 for Apache Tomcat Server.</p>
+<p>Repeat steps 1–3 for Apache Tomcat Server.</p>
 </li>
 </ol>
 </div>
@@ -1893,48 +1399,44 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <div class="sect1">
 <h2 id="_storage">Storage</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>As shown in <a href="#architecture1">Figure 1</a>, Amazon Data Lifecycle Manager (DLM) is used to automate the creation, retention, and deletion of snapshots of the Amazon Elastic Block Storage (EBS) volumes.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>As shown in <a href="#architecture1">Figure 1</a>, Amazon DLM is used to automate the creation, retention, and deletion of snapshots of the Amazon EBS volumes.</p>
 </div>
 <div class="paragraph">
-<p>DLM is configured as follows:</p>
+<p>Amazon DLM is configured as follows:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The EC2 tag (Name: <strong>LCM_TAG</strong> , Value: <strong>XSTORE</strong>) key-value pair is used to take snapshots.</p>
+<p>Uses EC2 tag (name: <strong>LCM_TAG</strong> , value: <strong>XSTORE</strong>) key-value pairs to take snapshots.</p>
 </li>
 <li>
-<p>The most recent three snapshots are retained.</p>
+<p>Retains the most recent three snapshots.</p>
 </li>
 <li>
-<p>A copy of each snapshot is stored in another AWS Region for data redundancy.</p>
+<p>Stores a copy of each snapshot in another AWS Region for redundancy.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_infrastructure_monitoring">Infrastructure Monitoring</h2>
+<h2 id="_infrastructure_monitoring">Infrastructure monitoring</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After implementing your Oracle WebLogic applications in the AWS Cloud, you can continue to use the monitoring tools you are familiar with to monitor your Oracle WebLogic environment and the application you deployed on WebLogic.</p>
+<p>After implementing your Oracle WebLogic applications in the AWS Cloud, monitor your Oracle WebLogic environment and the deployed application on WebLogic.</p>
 </div>
 <div class="paragraph">
 <p>You can use Fusion Middleware Control, the Oracle WebLogic Server Administration Console, or the command line (using the <a href="https://docs.oracle.com/middleware/1213/wls/WLSTC/reference.htm#WLSTC416" target="_blank" rel="noopener">WSLT state command</a>) to monitor your Oracle WebLogic infrastructure components. This includes WebLogic domains, Managed Servers, and clusters. You can also monitor the Java applications deployed and get information such as the state of your application, the number of active sessions, and response times.</p>
 </div>
 <div class="paragraph">
-<p>For more information about how to monitor Oracle WebLogic, see the <a href="https://www.oracle.com/middleware/technologies/weblogic.html">Oracle WebLogic documentation</a>.</p>
+<p>For more information about how to monitor Oracle WebLogic, see the <a href="https://www.oracle.com/middleware/technologies/weblogic.html" target="_blank" rel="noopener">Oracle WebLogic Server</a>.</p>
 </div>
 <div class="paragraph">
-<p>You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch enables you to monitor your AWS resources in near real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch will also monitor.</p>
+<p>You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch monitors your AWS resources in real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch  also monitors.</p>
 </div>
 <div class="paragraph">
-<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure a notification of the event to be sent through SMS or email. Real-time alarms for metrics and events enable you to minimize downtime and potential business impact.</p>
+<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure a notification of the event to be sent through SMS (text) or email. Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
 </div>
 </div>
 </div>
@@ -1988,7 +1490,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>No</strong>. (In the AWS CloudFormation console, this setting is under <strong>Advanced</strong> on the <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (In the AWS CloudFormation console, this setting is under <strong>Advanced</strong> on the <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance remains running so you can troubleshoot the issue. (For Windows, look at the log files in '%ProgramFiles%\Amazon\EC2ConfigService' and 'C:\cfn\log'.)</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2010,6 +1512,563 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 </div>
 <div class="paragraph">
 <p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parameter_reference">Parameter reference</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_parameters_for_deploying_into_an_existing_vpc">Parameters for deploying into an existing VPC</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Network configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VPC ID
+(<code>VPCID</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the VPC.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1 ID
+(<code>PrivateSubnet1ID</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1, located in Availability Zone 1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2 ID
+(<code>PrivateSubnet2ID</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2, located in Availability Zone 2.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 ID
+(<code>PublicSubnet1ID</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 ID
+(<code>PublicSubnet2ID</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed bastion external access CIDR
+(<code>RemoteAccessCIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion host. We recommend that you set this value to a trusted IP range.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. XStore Office environment configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Environment size
+(<code>EnvironmentSize</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office environment size (small, medium, or large).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key-pair name
+(<code>KeyPairName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key-pair name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stack name prefix
+(<code>StackPrefix</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOffice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix name for all the associated resources in the stack.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puppet server FQDN
+(<code>PuppetServerFQDN</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>puppet.skillnetaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assign fully qualified domain name for Puppet server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for deployment server ALB
+(<code>DeployServerSSLCertificateArn</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for deployment server load balancer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin server ALB
+(<code>XAdminSSLCertificateArn</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin application load balancer.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. WebLogic cluster storage configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name
+(<code>EFSVolumeName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume mount point
+(<code>EFSMountPoint</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the EFS volume.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Oracle database configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name
+(<code>DBName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle System ID (SID).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator
+(<code>Admin</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator password
+(<code>AdminPassword</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database allocated storage
+(<code>DBAllocatedStorage</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size of the database in gigabytes (GiB).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database instance class
+(<code>DBInstanceClass</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.r4.large</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the compute and memory capacity class of the database instance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle edition
+(<code>OracleEdition</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle edition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family
+(<code>Family</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee-12.1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family engine.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version
+(<code>Compatible</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version that is compatible with the Oracle family (e.g., 12.1.0.2.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version
+(<code>EngineVersion</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version compatible with the family (e.g., 12.1.0.2.v7.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle license model
+(<code>LicenseModel</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bring-your-own-license</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle license type.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Backup configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DLM cross-Region copy
+(<code>DLMCrossRegionCopy</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-Region to copy the EC2 instance snapshots for backup.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. AWS Quick Start configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket name
+(<code>QSS3BucketName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket Region
+(<code>QSS3BucketRegion</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
+(<code>QSS3KeyPrefix</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-skillnet-xstoreoffice/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_parameters_for_deploying_into_a_new_vpc">Parameters for deploying into a new VPC</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Network configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability Zones
+(<code>AvailabilityZones</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VPC CIDR
+(<code>VPCCIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/16</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the VPC.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1 CIDR
+(<code>PrivateSubnet1CIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/19</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1, located in Availability Zone 1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2 CIDR
+(<code>PrivateSubnet2CIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.32.0/19</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2, located in Availability Zone 2.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 CIDR
+(<code>PublicSubnet1CIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.128.0/20</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 CIDR
+(<code>PublicSubnet2CIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.144.0/20</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed bastion external access CIDR
+(<code>RemoteAccessCIDR</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion host. We recommend that you set this value to a trusted IP range.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. XStore Office environment configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Environment size
+(<code>EnvironmentSize</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office environment size (small, medium, or large).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key-pair name
+(<code>KeyPairName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key-pair name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stack name prefix
+(<code>StackPrefix</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOffice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix name for all the associated resources in the stack.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puppet server FQDN
+(<code>PuppetServerFQDN</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>puppet.skillnetaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assign fully qualified domain name for Puppet server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for deployment server ALB
+(<code>DeployServerSSLCertificateArn</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for deployment server load balancer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin server ALB
+(<code>XAdminSSLCertificateArn</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin application load balancer.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. WebLogic cluster storage configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name
+(<code>EFSVolumeName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume mount point
+(<code>EFSMountPoint</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the EFS volume.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. Oracle database configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name
+(<code>DBName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle System ID (SID).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator
+(<code>Admin</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator password
+(<code>AdminPassword</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database allocated storage
+(<code>DBAllocatedStorage</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size of the database in gigabytes (GiB).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database instance class
+(<code>DBInstanceClass</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.r4.large</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the compute and memory capacity class of the database instance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle edition
+(<code>OracleEdition</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle edition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family
+(<code>Family</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oracle-ee-12.1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family engine.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version
+(<code>Compatible</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version that is compatible with the Oracle family (e.g., 12.1.0.2.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version
+(<code>EngineVersion</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version compatible with the family (e.g., 12.1.0.2.v7.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle license model
+(<code>LicenseModel</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bring-your-own-license</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle license type.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. Backup configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DLM cross-Region copy
+(<code>DLMCrossRegionCopy</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-Region to copy the EC2 instance snapshots for backup.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 12. AWS Quick Start configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket name
+(<code>QSS3BucketName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket Region
+(<code>QSS3BucketRegion</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
+(<code>QSS3KeyPrefix</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-skillnet-xstoreoffice/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
