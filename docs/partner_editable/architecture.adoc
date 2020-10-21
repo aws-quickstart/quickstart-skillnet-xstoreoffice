@@ -1,4 +1,4 @@
-Deploying this Quick Start for a new Virtual Private Cloud (VPC) with default parameters builds the following {partner-product-name} environment in the AWS Cloud.
+Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following {partner-product-name} environment in the AWS Cloud.
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 :xrefstyle: short
@@ -19,7 +19,7 @@ As shown in <<architecture1>>, the Quick Start sets up the following:
 * In the private subnets:
 // Add bullet points for any additional components that are included in the deployment. Make sure that the additional components are also represented in the architecture diagram.
 
-** An Amazon Relational Database Service (Amazon RDS) Oracle database storing the XCenter, XCenter replication, and XAdmin databases.
+** An Amazon RDS Oracle database storing the XCenter, XCenter replication, and XAdmin databases.
 ** An Apache Tomcat deployment server running on an Amazon EC2 instance for deployments from Oracle Retail Xstore Office.
 ** Oracle WebLogic cluster nodes running on Amazon EC2 instances for the deployment of Oracle Retail Xstore Office applications.
 ** A Puppet server running on an Amazon EC2 instance for Apache tomcat installation, Oracle WebLogic cluster installation, and data loader execution.

@@ -115,7 +115,7 @@ Metadata:
         default: DLM cross-Region copy
 Parameters:
   AvailabilityZones:
-    Description: Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.
+    Description: Choose two Availability Zones for the subnets in the VPC. Your first selection is Availability Zone 1 in the deployment, and your second selection is Availability Zone 2.
     Type: List<AWS::EC2::AvailabilityZone::Name>
   PrivateSubnet1CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
@@ -208,14 +208,14 @@ Parameters:
     Description: SSL certificate ARN for deployment server load balancer.
   XAdminSSLCertificateArn:
     Type: String
-    Description: SSL certificate ARN for XAdmin application load balancer.
+    Description: SSL certificate ARN for XAdmin Application Load Balancer.
   EFSVolumeName:
-    Description: EFS volume name.
+    Description: Amazon EFS volume name.
     Type: String
     MinLength: '1'
     Default: XStoreOfficeWlsEFS
   EFSMountPoint:
-    Description: Linux mount point for the EFS volume.
+    Description: Linux mount point for the Amazon EFS volume.
     Type: String
     MinLength: '1'
     Default: "/home/oracle"

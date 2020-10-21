@@ -186,14 +186,14 @@ Parameters:
     Description: SSL certificate ARN for deployment server load balancer.
   XAdminSSLCertificateArn:
     Type: String
-    Description: SSL certificate ARN for XAdmin application load balancer.
+    Description: SSL certificate ARN for XAdmin Application Load Balancer.
   EFSVolumeName:
-    Description: EFS volume name.
+    Description: Amazon EFS volume name.
     Type: String
     MinLength: '1'
     Default: XStoreOfficeWlsEFS
   EFSMountPoint:
-    Description: Linux mount point for the EFS volume.
+    Description: Linux mount point for the Amazon EFS volume.
     Type: String
     MinLength: '1'
     Default: "/home/oracle"

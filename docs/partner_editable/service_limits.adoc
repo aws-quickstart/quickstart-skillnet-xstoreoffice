@@ -9,7 +9,7 @@
 |IAM roles |1
 |Auto Scaling groups |3
 |Application Load Balancers |2
-|EC2 instances | Small Tier (5), Medium Tier (10), Large Tier (14)
-|EFS |1
-|Data Lifecycle Manager |1
+|EC2 instances | small tier (5), medium tier (10), large tier (14)
+|Amazon EFS |1
+|Amazon DLM |1
 |===

@@ -1,14 +1,14 @@
 // Add steps as necessary for accessing the software, post-configuration, and testing. Don’t include full usage instructions for your software, but add links to your product documentation for that information.
 //Should any sections not be applicable, remove them
 
-== Post deployment steps
+== Post-deployment steps
 // If Post-deployment steps are required, add them here. If not, remove the heading
 Disable the Auto Scaling group for the Oracle WebLogic cluster and Apache Tomcat server.
 
-. Choose Auto Scaling group for the Oracle WebLogic server.
-. On the *Details* tab, select the *Edit* button.
+. Choose the Auto Scaling group for the Oracle WebLogic server.
+. On the *Details* tab, choose the *Edit* button.
 . On the *Suspended processes* list box, select all the processes to suspend.
-. Repeat steps 1–3 for Apache Tomcat Server.
+. Repeat steps 1–3 for Apache Tomcat server.
 
 == Storage
 As shown in <<architecture1>>, Amazon DLM is used to automate the creation, retention, and deletion of snapshots of the Amazon EBS volumes.
@@ -29,7 +29,7 @@ For more information about how to monitor Oracle WebLogic, see the https://www.o
 
 You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch monitors your AWS resources in real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch  also monitors.
 
-With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure a notification of the event to be sent through SMS (text) or email. Real-time alarms for metrics and events help you to minimize downtime and business impacts. 
+With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure an email or SMS notification of the event to be sent through Amazon Simple Notification Service (Amazon SNS). Real-time alarms for metrics and events help you to minimize downtime and business impacts. 
 
 == Support
 
