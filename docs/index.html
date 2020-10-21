@@ -950,7 +950,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>Oracle Retail Xstore Office (BYOL).</p>
 </li>
 <li>
-<p>Oracle Retail Xstore Office Support (mandatory for use of Amazon Relational Database Service (Amazon RDS)).</p>
+<p>Oracle Retail Xstore Office support.*</p>
 </li>
 <li>
 <p>Oracle Database 12c (BYOL/AWS managed).</p>
@@ -959,9 +959,12 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>Oracle WebLogic Server (BYOL/AWS managed).</p>
 </li>
 <li>
-<p>Oracle Enterprise Linux (GNU General Public License (GPLv2)).</p>
+<p>Oracle Enterprise Linux (GNU General Public License version 2).</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>*Oracle Retail Xstore Office support is mandatory for use of Amazon Relational Database Service (Amazon RDS).</p>
 </div>
 </div>
 </div>
@@ -1006,7 +1009,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <div class="ulist">
 <ul>
 <li>
-<p>An Amazon Relational Database Service (Amazon RDS) Oracle database storing the XCenter, XCenter replication, and XAdmin databases.</p>
+<p>An Amazon RDS Oracle database storing the XCenter, XCenter replication, and XAdmin databases.</p>
 </li>
 <li>
 <p>An Apache Tomcat deployment server running on an Amazon EC2 instance for deployments from Oracle Retail Xstore Office.</p>
@@ -1426,7 +1429,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <p>You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch monitors your AWS resources in real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch  also monitors.</p>
 </div>
 <div class="paragraph">
-<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure a notification of the event to be sent through SMS (text) or email. Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
+<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure an email or SMS notification of the event to be sent through Amazon Simple Notification Service (Amazon SNS). Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
 </div>
 </div>
 </div>
@@ -1612,7 +1615,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin server ALB
 (<code>XAdminSSLCertificateArn</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin application load balancer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1891,7 +1894,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin server ALB
 (<code>XAdminSSLCertificateArn</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application load balancer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
 </tr>
 </tbody>
 </table>

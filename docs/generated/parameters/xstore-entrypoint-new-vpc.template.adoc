@@ -20,7 +20,7 @@
 (`StackPrefix`)|`XStoreOffice`|Prefix name for all the associated resources in the stack.|Puppet server FQDN
 (`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign fully qualified domain name for Puppet server.|SSL certificate ARN for deployment server ALB
 (`DeployServerSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for deployment server load balancer.|SSL certificate ARN for XAdmin server ALB
-(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin Application load balancer.
+(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin Application Load Balancer.
 |===
 .WebLogic cluster storage configuration
 [width="100%",cols="16%,11%,73%",options="header",]
