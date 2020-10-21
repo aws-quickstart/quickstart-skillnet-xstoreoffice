@@ -1,9 +1,9 @@
 :quickstart-project-name: quickstart-skillnet-xstoreoffice
 :partner-product-name: Oracle Xstore Office
-:partner-company-name: SkillNet Solutions, Inc.
+:partner-company-name: SkillNet Solutions Inc.
 :doc-month: October
 :doc-year: 2020
-:partner-contributors: Satheesh Kumar Thiyagarajan, Skillnet Solutions, Inc.
+:partner-contributors: Satheesh Kumar Thiyagarajan, Skillnet Solutions Inc.
 :quickstart-contributors: Dave May, AWS Quick Start team
 :deployment_time: 1 hour
 :default_deployment_region: us-east-1

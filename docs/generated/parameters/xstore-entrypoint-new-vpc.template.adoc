@@ -3,7 +3,7 @@
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|Availability Zones
-(`AvailabilityZones`)|`**__Requires input__**`|Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.|VPC CIDR
+(`AvailabilityZones`)|`**__Requires input__**`|Choose two Availability Zones for the subnets in the VPC. Your first selection is Availability Zone 1 in the deployment, and your second selection is Availability Zone 2.|VPC CIDR
 (`VPCCIDR`)|`10.0.0.0/16`|CIDR block for the VPC.|Private subnet 1 CIDR
 (`PrivateSubnet1CIDR`)|`10.0.0.0/19`|CIDR block for private subnet 1, located in Availability Zone 1.|Private subnet 2 CIDR
 (`PrivateSubnet2CIDR`)|`10.0.32.0/19`|CIDR block for private subnet 2, located in Availability Zone 2.|Public subnet 1 CIDR
@@ -20,14 +20,14 @@
 (`StackPrefix`)|`XStoreOffice`|Prefix name for all the associated resources in the stack.|Puppet server FQDN
 (`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign fully qualified domain name for Puppet server.|SSL certificate ARN for deployment server ALB
 (`DeployServerSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for deployment server load balancer.|SSL certificate ARN for XAdmin server ALB
-(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin application load balancer.
+(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin Application Load Balancer.
 |===
 .WebLogic cluster storage configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|EFS volume name
-(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|EFS volume name.|EFS volume mount point
-(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the EFS volume.
+(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|Amazon EFS volume name.|EFS volume mount point
+(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the Amazon EFS volume.
 |===
 .Oracle database configuration
 [width="100%",cols="16%,11%,73%",options="header",]

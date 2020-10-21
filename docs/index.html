@@ -807,7 +807,7 @@ p.footer-text a{color:#d7d8d8}
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
 </ul>
 </li>
-<li><a href="#_post_deployment_steps">Post deployment steps</a></li>
+<li><a href="#_post_deployment_steps">Post-deployment steps</a></li>
 <li><a href="#_storage">Storage</a></li>
 <li><a href="#_infrastructure_monitoring">Infrastructure monitoring</a></li>
 <li><a href="#_support">Support</a></li>
@@ -837,7 +837,7 @@ p.footer-text a{color:#d7d8d8}
 </div>
 <div class="paragraph text-center">
 <p><strong>October, 2020</strong><br>
-<em>Satheesh Kumar Thiyagarajan, Skillnet Solutions, Inc.</em><br>
+<em>Satheesh Kumar Thiyagarajan, Skillnet Solutions Inc.</em><br>
 <em>Dave May, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
@@ -854,7 +854,7 @@ report bugs, or submit feature ideas for this Quick Start.
 </table>
 </div>
 <div class="paragraph text-left">
-<p>This Quick Start was created by SkillNet Solutions, Inc. in collaboration with Amazon Web Services (AWS). <a href="http://aws.amazon.com/quickstart/" target="_blank" rel="noopener">Quick Starts</a> are automated reference deployments that use AWS CloudFormation templates to deploy key technologies on AWS, following AWS best practices.</p>
+<p>This Quick Start was created by SkillNet Solutions Inc. in collaboration with Amazon Web Services (AWS). <a href="http://aws.amazon.com/quickstart/" target="_blank" rel="noopener">Quick Starts</a> are automated reference deployments that use AWS CloudFormation templates to deploy key technologies on AWS, following AWS best practices.</p>
 </div>
 </div>
 </div>
@@ -871,8 +871,7 @@ report bugs, or submit feature ideas for this Quick Start.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Amazon may share who uses AWS
-Quick Starts with the AWS Partner that collaborated with AWS on the content of the Quick Start.
+Amazon may share user-deployment information with the AWS Partner that collaborated with AWS on the Quick Start.
 </td>
 </tr>
 </table>
@@ -883,7 +882,7 @@ Quick Starts with the AWS Partner that collaborated with AWS on the content of t
 <h2 id="_oracle_xstore_office_on_aws">Oracle Xstore Office on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Oracle Retail Xstore suite enables in-store retail functions in medium to large enterprises across geographical Regions. It relies on centrally-hosted server applications to which the distributed in-store clients connect for data and transactional needs.</p>
+<p>The Oracle Retail Xstore suite enables in-store retail functions in medium to large enterprises across geographical Regions. It relies on centrally hosted server applications to which the distributed in-store clients connect for data and transactional needs.</p>
 </div>
 <div class="paragraph">
 <p>Traditionally these server applications have been hosted on premises, typically supporting connections from stores located in multiple time zones. The variety of local internet service providers in use in this architecture pose risks to availability, latency, and scaling to support peak loads. Thus, retailers are looking to adopt the AWS Cloud to host the Oracle Retail Xstore Office workload and realize the following benefits:</p>
@@ -949,18 +948,21 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>Oracle Retail Xstore Office (BYOL).</p>
 </li>
 <li>
-<p>Oracle Retail Xstore Office Support (mandatory for use of Amazon Relational Database Service (Amazon RDS)).</p>
+<p>Oracle Retail Xstore Office support.*</p>
 </li>
 <li>
-<p>Oracle Database 12c (BYOL / AWS-managed).</p>
+<p>Oracle Database 12c (BYOL/AWS managed).</p>
 </li>
 <li>
-<p>Oracle WebLogic Server (BYOL / AWS-managed).</p>
+<p>Oracle WebLogic Server (BYOL/AWS managed).</p>
 </li>
 <li>
-<p>Oracle Enterprise Linux (GNU General Public License (GPLv2)).</p>
+<p>Oracle Enterprise Linux (GNU General Public License version 2).</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>*Oracle Retail Xstore Office support is mandatory for use of Amazon Relational Database Service (Amazon RDS).</p>
 </div>
 </div>
 </div>
@@ -968,7 +970,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Deploying this Quick Start for a new Virtual Private Cloud (VPC) with default parameters builds the following Oracle Xstore Office environment in the AWS Cloud.</p>
+<p>Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following Oracle Xstore Office environment in the AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
 <div class="content">
@@ -995,7 +997,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <p>Managed network address translation (NAT) gateways to allow outbound internet access for resources in the private subnets.*</p>
 </li>
 <li>
-<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to EC2 instances in public and private subnets.*</p>
+<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon EC2 instances in public and private subnets.*</p>
 </li>
 </ul>
 </div>
@@ -1005,7 +1007,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <div class="ulist">
 <ul>
 <li>
-<p>An Amazon Relational Database Service (Amazon RDS) Oracle database storing the XCenter, XCenter replication, and XAdmin databases.</p>
+<p>An Amazon RDS Oracle database storing the XCenter, XCenter replication, and XAdmin databases.</p>
 </li>
 <li>
 <p>An Apache Tomcat deployment server running on an Amazon EC2 instance for deployments from Oracle Retail Xstore Office.</p>
@@ -1109,14 +1111,14 @@ Cloud.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EC2 instances</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Small Tier (5), Medium Tier (10), Large Tier (14)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">small tier (5), medium tier (10), large tier (14)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon EFS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data Lifecycle Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon DLM</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 </tbody>
@@ -1195,7 +1197,7 @@ Cloud.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Certain Regions are available on an opt-in basis. Refer see <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing AWS Regions</a>.
+Certain Regions are available on an opt-in basis. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing AWS Regions</a>.
 </td>
 </tr>
 </table>
@@ -1210,7 +1212,7 @@ Certain Regions are available on an opt-in basis. Refer see <a href="https://doc
 <p>The <em>AdministratorAccess</em> managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start requires a custom AMI provided by SkillNet Solutions, Inc. upon request.</p>
+<p>This Quick Start requires a custom AMI provided by SkillNet Solutions Inc. upon request.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1362,7 +1364,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </div>
 </div>
 <div class="sect1">
-<h2 id="_post_deployment_steps">Post deployment steps</h2>
+<h2 id="_post_deployment_steps">Post-deployment steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Disable the Auto Scaling group for the Oracle WebLogic cluster and Apache Tomcat server.</p>
@@ -1370,16 +1372,16 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose Auto Scaling group for the Oracle WebLogic server.</p>
+<p>Choose the Auto Scaling group for the Oracle WebLogic server.</p>
 </li>
 <li>
-<p>On the <strong>Details</strong> tab, select the <strong>Edit</strong> button.</p>
+<p>On the <strong>Details</strong> tab, choose the <strong>Edit</strong> button.</p>
 </li>
 <li>
 <p>On the <strong>Suspended processes</strong> list box, select all the processes to suspend.</p>
 </li>
 <li>
-<p>Repeat steps 1–3 for Apache Tomcat Server.</p>
+<p>Repeat steps 1–3 for Apache Tomcat server.</p>
 </li>
 </ol>
 </div>
@@ -1425,7 +1427,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <p>You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch monitors your AWS resources in real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch  also monitors.</p>
 </div>
 <div class="paragraph">
-<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure a notification of the event to be sent through SMS (text) or email. Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
+<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure an email or SMS notification of the event to be sent through Amazon Simple Notification Service (Amazon SNS). Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
 </div>
 </div>
 </div>
@@ -1433,7 +1435,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <h2 id="_support">Support</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The SkillNet Solutions, Inc. support team is standing by to assist you with setting up Oracle Xstore Office on your AWS environment. Send an email to <a href="mailto:support_xstoreoffice@skillnetinc.com">support_xstoreoffice@skillnetinc.com</a> to contact the support team.</p>
+<p>The SkillNet Solutions Inc. support team is standing by to assist you with setting up Oracle Xstore Office on your AWS environment. Send an email to <a href="mailto:support_xstoreoffice@skillnetinc.com">support_xstoreoffice@skillnetinc.com</a> to contact the support team.</p>
 </div>
 <div class="paragraph">
 <p>Automating snapshot management accomplishes the following:</p>
@@ -1488,7 +1490,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Please make sure to delete the stack when you finish troubleshooting.
+When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Ensure to delete the stack when you finish troubleshooting.
 </td>
 </tr>
 </table>
@@ -1611,7 +1613,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin server ALB
 (<code>XAdminSSLCertificateArn</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin application load balancer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1634,13 +1636,13 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name
 (<code>EFSVolumeName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon EFS volume name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume mount point
 (<code>EFSMountPoint</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the EFS volume.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the Amazon EFS volume.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1801,7 +1803,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Availability Zones
 (<code>AvailabilityZones</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Choose two Availability Zones for the subnets in the VPC. Your first selection is Availability Zone 1 in the deployment, and your second selection is Availability Zone 2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VPC CIDR
@@ -1890,7 +1892,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin server ALB
 (<code>XAdminSSLCertificateArn</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin application load balancer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL certificate ARN for XAdmin Application Load Balancer.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1913,13 +1915,13 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name
 (<code>EFSVolumeName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>XStoreOfficeWlsEFS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon EFS volume name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EFS volume mount point
 (<code>EFSMountPoint</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/home/oracle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the EFS volume.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux mount point for the Amazon EFS volume.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2103,7 +2105,7 @@ and to share your customizations with others.</p>
 <p class="footer-text">
 <!-- We can use document attributes: -->
 <!-- Generated with Asciidoctor v2.0.10. -->
-<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates and SkillNet Solutions, Inc.. All rights reserved.
+<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates and SkillNet Solutions Inc.. All rights reserved.
 </p>
 </body>
 </html>

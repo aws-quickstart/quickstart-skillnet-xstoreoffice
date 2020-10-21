@@ -19,14 +19,14 @@
 (`StackPrefix`)|`XStoreOffice`|Prefix name for all the associated resources in the stack.|Puppet server FQDN
 (`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign fully qualified domain name for Puppet server.|SSL certificate ARN for deployment server ALB
 (`DeployServerSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for deployment server load balancer.|SSL certificate ARN for XAdmin server ALB
-(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin application load balancer.
+(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin Application Load Balancer.
 |===
 .WebLogic cluster storage configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|EFS volume name
-(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|EFS volume name.|EFS volume mount point
-(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the EFS volume.
+(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|Amazon EFS volume name.|EFS volume mount point
+(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the Amazon EFS volume.
 |===
 .Oracle database configuration
 [width="100%",cols="16%,11%,73%",options="header",]
