@@ -5,18 +5,18 @@
 |Parameter label (name) |Default value|Description|Availability Zones
 (`AvailabilityZones`)|`**__Requires input__**`|Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.|VPC CIDR
 (`VPCCIDR`)|`10.0.0.0/16`|CIDR block for the VPC.|Private subnet 1 CIDR
-(`PrivateSubnet1CIDR`)|`10.0.0.0/19`|CIDR block for private subnet 1 located in Availability Zone 1.|Private subnet 2 CIDR
-(`PrivateSubnet2CIDR`)|`10.0.32.0/19`|CIDR block for private subnet 2 located in Availability Zone 2.|Public subnet 1 CIDR
-(`PublicSubnet1CIDR`)|`10.0.128.0/20`|CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.|Public subnet 2 CIDR
-(`PublicSubnet2CIDR`)|`10.0.144.0/20`|CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.|Allowed bastion external access CIDR
-(`RemoteAccessCIDR`)|`**__Requires input__**`|CIDR IP range that is permitted to access the bastion/Remote Desktop Gateway (RD Gateway). We recommend that you set this value to a trusted IP range.
+(`PrivateSubnet1CIDR`)|`10.0.0.0/19`|CIDR block for private subnet 1, located in Availability Zone 1.|Private subnet 2 CIDR
+(`PrivateSubnet2CIDR`)|`10.0.32.0/19`|CIDR block for private subnet 2, located in Availability Zone 2.|Public subnet 1 CIDR
+(`PublicSubnet1CIDR`)|`10.0.128.0/20`|CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.|Public subnet 2 CIDR
+(`PublicSubnet2CIDR`)|`10.0.144.0/20`|CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.|Allowed bastion external access CIDR
+(`RemoteAccessCIDR`)|`**__Requires input__**`|CIDR IP range that is permitted to access the bastion host. We recommend that you set this value to a trusted IP range.
 |===
 .XStore Office environment configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|Environment size
-(`EnvironmentSize`)|`Small`|XStore Office environment size (S, M, L).|Key pair name
-(`KeyPairName`)|`**__Requires input__**`|EC2 key pair name.|Stack name prefix
+(`EnvironmentSize`)|`Small`|XStore Office environment size (small, medium, or large).|Key-pair name
+(`KeyPairName`)|`**__Requires input__**`|EC2 key-pair name.|Stack name prefix
 (`StackPrefix`)|`XStoreOffice`|Prefix name for all the associated resources in the stack.|Puppet server FQDN
 (`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign fully qualified domain name for Puppet server.|SSL certificate ARN for deployment server ALB
 (`DeployServerSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for deployment server load balancer.|SSL certificate ARN for XAdmin server ALB
@@ -32,16 +32,16 @@
 .Oracle database configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
-|Parameter label (name) |Default value|Description|Database Name
-(`DBName`)|`orcldb`|Oracle database name (SID).|Administrator
-(`Admin`)|`xstore`|Oracle database admin account username.|Admin password
-(`AdminPassword`)|`Test1234`|Oracle database admin account password.|Database allocated storage
+|Parameter label (name) |Default value|Description|Database name
+(`DBName`)|`orcldb`|Oracle System ID (SID).|Administrator
+(`Admin`)|`xstore`|Oracle database administrator name.|Administrator password
+(`AdminPassword`)|`Test1234`|Oracle database administrator password.|Database allocated storage
 (`DBAllocatedStorage`)|`100`|Size of the database in gigabytes (GiB).|Database instance class
 (`DBInstanceClass`)|`db.r4.large`|Name of the compute and memory capacity class of the database instance.|Oracle edition
 (`OracleEdition`)|`oracle-ee`|Oracle edition.|Oracle family
-(`Family`)|`oracle-ee-12.1`|Oracle family engine.|Oracle compatible
-(`Compatible`)|`12.1.0.2`|Oracle family compatible version (e.g., 12.1.0.2.)|Oracle engine version
-(`EngineVersion`)|`12.1.0.2.v7`|Oracle family compatible version (e.g., 12.1.0.2.v7.)|Oracle license model
+(`Family`)|`oracle-ee-12.1`|Oracle family engine.|Oracle version
+(`Compatible`)|`12.1.0.2`|Oracle version that is compatible with the Oracle family (e.g., 12.1.0.2.)|Oracle engine version
+(`EngineVersion`)|`12.1.0.2.v7`|Oracle engine version compatible with the family (e.g., 12.1.0.2.v7.)|Oracle license model
 (`LicenseModel`)|`bring-your-own-license`|Oracle license type.
 |===
 .Backup configuration

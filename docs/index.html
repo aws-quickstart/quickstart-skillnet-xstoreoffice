@@ -1534,31 +1534,31 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1 ID
 (<code>PrivateSubnet1ID</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1 located in Availability Zone 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1, located in Availability Zone 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2 ID
 (<code>PrivateSubnet2ID</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2 located in Availability Zone 2.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2, located in Availability Zone 2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 ID
 (<code>PublicSubnet1ID</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 ID
 (<code>PublicSubnet2ID</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allowed bastion external access CIDR
 (<code>RemoteAccessCIDR</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion/Remote Desktop Gateway (RD Gateway). We recommend that you set this value to a trusted IP range.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion host. We recommend that you set this value to a trusted IP range.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1581,13 +1581,13 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Environment size
 (<code>EnvironmentSize</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office environment size (S, M, L).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office environment size (small, medium, or large).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key pair name
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key-pair name
 (<code>KeyPairName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key pair name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key-pair name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stack name prefix
@@ -1663,19 +1663,19 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Database name
 (<code>DBName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database name (SID).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle System ID (SID).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Administrator
 (<code>Admin</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account username.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator name.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin password
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator password
 (<code>AdminPassword</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account password.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator password.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Database allocated storage
@@ -1702,16 +1702,16 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family engine.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle compatible
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version
 (<code>Compatible</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family compatible version (e.g., 12.1.0.2.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version that is compatible with the Oracle family (e.g., 12.1.0.2.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version
 (<code>EngineVersion</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Family compatible version (e.g., 12.1.0.2.v7.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version compatible with the family (e.g., 12.1.0.2.v7.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Oracle license model
@@ -1813,31 +1813,31 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1 CIDR
 (<code>PrivateSubnet1CIDR</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1 located in Availability Zone 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1, located in Availability Zone 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2 CIDR
 (<code>PrivateSubnet2CIDR</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.32.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2 located in Availability Zone 2.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2, located in Availability Zone 2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 CIDR
 (<code>PublicSubnet1CIDR</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.128.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 CIDR
 (<code>PublicSubnet2CIDR</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.144.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allowed bastion external access CIDR
 (<code>RemoteAccessCIDR</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion/Remote Desktop Gateway (RD Gateway). We recommend that you set this value to a trusted IP range.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR IP range that is permitted to access the bastion host. We recommend that you set this value to a trusted IP range.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1860,13 +1860,13 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Environment size
 (<code>EnvironmentSize</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Small</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office environment size (S, M, L).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XStore Office environment size (small, medium, or large).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key pair name
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key-pair name
 (<code>KeyPairName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key pair name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 key-pair name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stack name prefix
@@ -1939,22 +1939,22 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database Name
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name
 (<code>DBName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>orcldb</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database name (SID).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle System ID (SID).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Administrator
 (<code>Admin</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstore</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account username.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator name.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Admin password
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator password
 (<code>AdminPassword</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Test1234</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database admin account password.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle database administrator password.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Database allocated storage
@@ -1981,16 +1981,16 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family engine.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle compatible
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version
 (<code>Compatible</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family compatible version (e.g., 12.1.0.2.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle version that is compatible with the Oracle family (e.g., 12.1.0.2.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version
 (<code>EngineVersion</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>12.1.0.2.v7</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle family compatible version (e.g., 12.1.0.2.v7.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle engine version compatible with the family (e.g., 12.1.0.2.v7.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Oracle license model
