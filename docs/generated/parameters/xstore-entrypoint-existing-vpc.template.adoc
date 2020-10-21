@@ -25,8 +25,8 @@
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|EFS volume name
-(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|EFS volume name.|EFS volume mount point
-(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the EFS volume.
+(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|Amazon EFS volume name.|EFS volume mount point
+(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the Amazon EFS volume.
 |===
 .Oracle database configuration
 [width="100%",cols="16%,11%,73%",options="header",]
