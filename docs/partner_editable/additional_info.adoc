@@ -8,7 +8,7 @@ Disable the Auto Scaling group for the Oracle WebLogic cluster and Apache Tomcat
 . Choose the Auto Scaling group for the Oracle WebLogic server.
 . On the *Details* tab, choose the *Edit* button.
 . On the *Suspended processes* list box, select all the processes to suspend.
-. Repeat steps 1–3 for Apache Tomcat Server.
+. Repeat steps 1–3 for Apache Tomcat server.
 
 == Storage
 As shown in <<architecture1>>, Amazon DLM is used to automate the creation, retention, and deletion of snapshots of the Amazon EBS volumes.
