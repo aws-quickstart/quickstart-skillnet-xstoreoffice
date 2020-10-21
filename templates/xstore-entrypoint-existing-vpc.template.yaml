@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This template uses existing VPC infrastructure for a multi-AZ, multi-tier deployment of xStoreOffice on AWS. 
-  WARNING This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r53pe6j0)
+  WARNING This template creates Amazon EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r53pe6j0)
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Parameters for deploying into an existing VPC"

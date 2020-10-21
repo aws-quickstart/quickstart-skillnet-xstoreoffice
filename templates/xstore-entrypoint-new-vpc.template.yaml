@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This template creates a VPC infrastructure for a multi-AZ, multi-tier
   deployment of xStoreOffice on AWS. It deploys a VPC with a bastion host.
-    WARNING This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r53pe6g1)
+    WARNING This template creates Amazon EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r53pe6g1)
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Parameters for deploying into a new VPC"
