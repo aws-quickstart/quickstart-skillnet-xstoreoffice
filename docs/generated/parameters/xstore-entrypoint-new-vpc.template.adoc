@@ -1,0 +1,60 @@
+
+.Network configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Availability Zones
+(`AvailabilityZones`)|`**__Requires input__**`|Select two Availability Zones for the subnets in the VPC. Your first selection will be Availability Zone 1 in the deployment, and your second selection will be Availability Zone 2.|VPC CIDR
+(`VPCCIDR`)|`10.0.0.0/16`|CIDR block for the VPC.|Private subnet 1 CIDR
+(`PrivateSubnet1CIDR`)|`10.0.0.0/19`|CIDR block for private subnet 1, located in Availability Zone 1.|Private subnet 2 CIDR
+(`PrivateSubnet2CIDR`)|`10.0.32.0/19`|CIDR block for private subnet 2, located in Availability Zone 2.|Public subnet 1 CIDR
+(`PublicSubnet1CIDR`)|`10.0.128.0/20`|CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.|Public subnet 2 CIDR
+(`PublicSubnet2CIDR`)|`10.0.144.0/20`|CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.|Allowed bastion external access CIDR
+(`RemoteAccessCIDR`)|`**__Requires input__**`|CIDR IP range that is permitted to access the bastion host. We recommend that you set this value to a trusted IP range.
+|===
+.XStore Office environment configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Environment size
+(`EnvironmentSize`)|`Small`|XStore Office environment size (small, medium, or large).|Key-pair name
+(`KeyPairName`)|`**__Requires input__**`|EC2 key-pair name.|Stack name prefix
+(`StackPrefix`)|`XStoreOffice`|Prefix name for all the associated resources in the stack.|Puppet server FQDN
+(`PuppetServerFQDN`)|`puppet.skillnetaws.com`|Assign fully qualified domain name for Puppet server.|SSL certificate ARN for deployment server ALB
+(`DeployServerSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for deployment server load balancer.|SSL certificate ARN for XAdmin server ALB
+(`XAdminSSLCertificateArn`)|`**__Requires input__**`|SSL certificate ARN for XAdmin application load balancer.
+|===
+.WebLogic cluster storage configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|EFS volume name
+(`EFSVolumeName`)|`XStoreOfficeWlsEFS`|EFS volume name.|EFS volume mount point
+(`EFSMountPoint`)|`/home/oracle`|Linux mount point for the EFS volume.
+|===
+.Oracle database configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Database name
+(`DBName`)|`orcldb`|Oracle System ID (SID).|Administrator
+(`Admin`)|`xstore`|Oracle database administrator name.|Administrator password
+(`AdminPassword`)|`Test1234`|Oracle database administrator password.|Database allocated storage
+(`DBAllocatedStorage`)|`100`|Size of the database in gigabytes (GiB).|Database instance class
+(`DBInstanceClass`)|`db.r4.large`|Name of the compute and memory capacity class of the database instance.|Oracle edition
+(`OracleEdition`)|`oracle-ee`|Oracle edition.|Oracle family
+(`Family`)|`oracle-ee-12.1`|Oracle family engine.|Oracle version
+(`Compatible`)|`12.1.0.2`|Oracle version that is compatible with the Oracle family (e.g., 12.1.0.2.)|Oracle engine version
+(`EngineVersion`)|`12.1.0.2.v7`|Oracle engine version compatible with the family (e.g., 12.1.0.2.v7.)|Oracle license model
+(`LicenseModel`)|`bring-your-own-license`|Oracle license type.
+|===
+.Backup configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|DLM cross-Region copy
+(`DLMCrossRegionCopy`)|`us-east-2`|Cross-Region to copy the EC2 instance snapshots for backup.
+|===
+.AWS Quick Start configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Quick Start S3 bucket name
+(`QSS3BucketName`)|`aws-quickstart`|S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).|Quick Start S3 bucket Region
+(`QSS3BucketRegion`)|`us-east-1`|AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.|Quick Start S3 key prefix
+(`QSS3KeyPrefix`)|`quickstart-skillnet-xstoreoffice/`|S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/).
+|===

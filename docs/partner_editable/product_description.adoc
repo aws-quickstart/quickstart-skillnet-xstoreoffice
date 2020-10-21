@@ -2,7 +2,7 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-The Oracle Retail Xstore Suite enables in-store retail functions in medium to large enterprises across geographical regions. It relies on centrally-hosted server applications to which the distributed in-store clients connect for data and transactional needs.
+The Oracle Retail Xstore suite enables in-store retail functions in medium to large enterprises across geographical Regions. It relies on centrally-hosted server applications to which the distributed in-store clients connect for data and transactional needs.
 
 Traditionally these server applications have been hosted on premises, typically supporting connections from stores located in multiple time zones. The variety of local internet service providers in use in this architecture pose risks to availability, latency, and scaling to support peak loads. Thus, retailers are looking to adopt the AWS Cloud to host the Oracle Retail Xstore Office workload and realize the following benefits:
 
