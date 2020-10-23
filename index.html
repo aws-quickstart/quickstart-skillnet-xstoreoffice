@@ -768,16 +768,19 @@ a img {
     border: 1px solid #A4A4A4;
 }
 
-#preview_mode {
+.preview_mode {
 	border-color:#e0e0dc;
 	-webkit-box-shadow:0 1px 4px #e0e0dc;
 	box-shadow:0 1px 4px #e0e0dc;
   background:#ffffb3;
   padding-bottom: 2rem;
 }
-#preview_mode .tableblock {
+.preview_mode .tableblock {
   background:#ffffb3;
 }
+
+.footer-text{color:rgba(255,255,255,.8);line-height:1.44;background:#1c222a;padding:1.25em;max-width:100%;margin-bottom:unset}
+p.footer-text a{color:#d7d8d8}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -800,17 +803,25 @@ a img {
 </li>
 <li><a href="#_deployment_steps">Deployment steps</a>
 <ul class="sectlevel2">
+<li><a href="#_sign_in_to_your_aws_account">Sign in to your AWS account</a></li>
+<li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
+</ul>
+</li>
+<li><a href="#_post_deployment_steps">Post-deployment steps</a></li>
+<li><a href="#_storage">Storage</a></li>
+<li><a href="#_infrastructure_monitoring">Infrastructure monitoring</a></li>
+<li><a href="#_support">Support</a></li>
+<li><a href="#_faq">FAQ</a></li>
+<li><a href="#_parameter_reference">Parameter reference</a>
+<ul class="sectlevel2">
 <li><a href="#_parameters_for_deploying_into_an_existing_vpc">Parameters for deploying into an existing VPC</a></li>
 <li><a href="#_parameters_for_deploying_into_a_new_vpc">Parameters for deploying into a new VPC</a></li>
 </ul>
 </li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
 <li><a href="#_quick_start_reference_deployments">Quick Start reference deployments</a></li>
-<li><a href="#_github_repository">GitHub repository</a>
-<ul class="sectlevel3">
+<li><a href="#_github_repository">GitHub repository</a></li>
 <li><a href="#_notices">Notices</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -824,25 +835,12 @@ a img {
 <img src="https://aws-quickstart.s3.amazonaws.com/quickstart-skillnet-xstoreoffice/docs/boilerplate/.images/aws-quickstart-graphic.png" alt="QS" width="80" height="80">
 </div>
 </div>
-<h3 id="_draft_document_unofficial_guidance" class="discrete text-center">DRAFT DOCUMENT / UNOFFICIAL GUIDANCE</h3>
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/__settings</em>.adoc</code></strong>_</p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph text-center">
-<p><strong>October, 2020</strong><br>
+<div class="paragraph text-center">
+<p><strong>October 2020</strong><br>
 <em>Satheesh Kumar Thiyagarajan, Skillnet Solutions Inc.</em><br>
 <em>Dave May, AWS Quick Start team</em></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock tip">
+</div>
+<div class="admonitionblock tip text-left">
 <table>
 <tr>
 <td class="icon">
@@ -864,20 +862,8 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/overview_target_and_usage.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The Quick Start is designed for users who want to migrate existing on-premises Oracle Xstore Office workloads to the AWS Cloud. This reference deployment guide contains the architectural considerations and configuration steps for deploying the Quick Start. It also provides links for viewing and launching the <a href="https://aws.amazon.com/cloudformation/" target="_blank" rel="noopener">AWS CloudFormation</a> templates that automate the deployment.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -885,9 +871,7 @@ report bugs, or submit feature ideas for this Quick Start.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Amazon may share who uses AWS
-Quick Starts with the AWS Partner Network (APN) Partner that
-collaborated with AWS on the content of the Quick Start.
+Amazon may share user-deployment information with the AWS Partner that collaborated with AWS on the Quick Start.
 </td>
 </tr>
 </table>
@@ -898,15 +882,6 @@ collaborated with AWS on the content of the Quick Start.
 <h2 id="_oracle_xstore_office_on_aws">Oracle Xstore Office on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/product_description.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The Oracle Retail Xstore suite enables in-store retail functions in medium to large enterprises across geographical Regions. It relies on centrally hosted server applications to which the distributed in-store clients connect for data and transactional needs.</p>
 </div>
 <div class="paragraph">
@@ -930,10 +905,7 @@ collaborated with AWS on the content of the Quick Start.
 <p>Low latency.</p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -945,7 +917,7 @@ this Quick Start. There is no additional cost for
 using the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p>The AWS CloudFormation template for this Quick Start includes
+<p>The AWS CloudFormation templates for Quick Starts include
 configuration parameters that you can customize. Some of the settings,
 such as the instance type, affect the cost of deployment. For cost estimates,
 see the pricing pages for each AWS service you use. Prices are subject to change.</p>
@@ -957,7 +929,7 @@ see the pricing pages for each AWS service you use. Prices are subject to change
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-gettingstarted-turnonreports.html" target="_blank" rel="noopener">AWS Cost and Usage Report</a> to deliver billing metrics to an Amazon Simple Storage Service (Amazon S3) bucket in your account. It provides cost estimates based on usage throughout each month and aggregates the data at the end of the month. For more information about the report, see the <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html" target="_blank" rel="noopener">AWS documentation</a>.
+After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-gettingstarted-turnonreports.html" target="_blank" rel="noopener">create AWS Cost and Usage Reports</a> to deliver billing metrics to an Amazon Simple Storage Service (Amazon S3) bucket in your account. These reports provide cost estimates based on usage throughout each month and aggregate the data at the end of the month. For more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html" target="_blank" rel="noopener">What are AWS Cost and Usage Reports?</a>
 </td>
 </tr>
 </table>
@@ -968,15 +940,6 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/licenses.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The following licenses are required for this Quick Start, with combinations of bring-your-own-license (BYOL) and AWS managed options:</p>
 </div>
 <div class="ulist">
@@ -1000,25 +963,13 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 </div>
 <div class="paragraph">
 <p>*Oracle Retail Xstore Office support is mandatory for use of Amazon Relational Database Service (Amazon RDS).</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/architecture.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following Oracle Xstore Office environment in the AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
@@ -1083,10 +1034,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 </div>
 <div class="paragraph">
 <p>*The template that deploys the Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1104,20 +1052,8 @@ deploy, and operate your infrastructure and applications on the AWS
 Cloud.</p>
 </div>
 <div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/specialized_knowledge.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>This Quick Start assumes familiarity with the Oracle Retail Xstore suite, Oracle database, Oracle WebLogic, Apache Tomcat, and Puppet.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_aws_account">AWS account</h3>
@@ -1134,14 +1070,10 @@ Cloud.</p>
 <p>Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.</p>
 </div>
 <div class="sect3">
-<h4 id="_resource_limits">Resource limits</h4>
+<h4 id="_resource_quotas">Resource quotas</h4>
 <div class="paragraph">
-<p>If necessary, request <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">service quota increases</a> for the following resources. You might need to request increases if your existing deployment currently uses these resources, and this Quick Start deployment could result in exceeding the default quotas. The <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">Service Quotas console</a> displays your usage and quotas for some aspects of some services. For more information, see the <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">AWS documentation</a>.</p>
+<p>If necessary, request <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">service quota increases</a> for the following resources. You might need to request increases if your existing deployment currently uses these resources and if this Quick Start deployment could result in exceeding the default quotas. The <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">Service Quotas console</a> displays your usage and quotas for some aspects of some services. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">What is Service Quotas?</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html" target="_blank" rel="noopener">AWS service quotas</a>.</p>
 </div>
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/service_limits.adoc</code></strong></em></p>
-</div>
-<div id="preview_mode">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1193,13 +1125,8 @@ Cloud.</p>
 </tbody>
 </table>
 </div>
-</div>
 <div class="sect3">
 <h4 id="_supported_regions">Supported Regions</h4>
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/regions.adoc</code></strong></em></p>
-</div>
-<div id="preview_mode">
 <div class="ulist">
 <ul>
 <li>
@@ -1264,7 +1191,6 @@ Cloud.</p>
 </li>
 </ul>
 </div>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -1272,7 +1198,7 @@ Cloud.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Certain Regions are available on an opt-in basis. Refer to the AWS Documentation on <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing Regions</a> for more information.
+Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing AWS Regions</a>.
 </td>
 </tr>
 </table>
@@ -1280,15 +1206,8 @@ Certain Regions are available on an opt-in basis. Refer to the AWS Documentation
 </div>
 <div class="sect3">
 <h4 id="_ec2_key_pairs">EC2 key pairs</h4>
-<div class="exampleblock">
-<div class="content">
 <div class="paragraph">
-<p><em>This section is conditional on EC2 instances being used in the Cloudformation Templates</em></p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Make sure that at least one <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank" rel="noopener">Amazon EC2 key pair</a> exists in your AWS account in the Region where you plan to deploy the Quick Start. Make note of the key pair name. You need it during deployment. To create a key pair, follow the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank" rel="noopener">instructions in the AWS documentation</a>.</p>
+<p>Make sure that at least one <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank" rel="noopener">Amazon EC2 key pair</a> exists in your AWS account in the Region where you plan to deploy the Quick Start. Make note of the key pair name. You need it during deployment. To create a key pair, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank" rel="noopener">Amazon EC2 key pairs and Linux instances</a>.</p>
 </div>
 <div class="paragraph">
 <p>For testing or proof-of-concept purposes, we recommend creating a new key pair instead of using one that’s already being used by a production instance.</p>
@@ -1297,39 +1216,15 @@ Certain Regions are available on an opt-in basis. Refer to the AWS Documentation
 <div class="sect3">
 <h4 id="_iam_permissions">IAM permissions</h4>
 <div class="paragraph">
-<p>Before launching the Quick Start, you must log in to the AWS Management Console with <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html" target="_blank" rel="noopener">IAM permissions</a> for the resources and actions the templates deploy.</p>
+<p>Before launching the Quick Start, you must sign in to the AWS Management Console with IAM permissions for the resources that the templates deploy. The <em>AdministratorAccess</em> managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html" target="_blank" rel="noopener">AWS managed policies for job functions</a>.</p>
 </div>
 <div class="paragraph">
-<p>The <em>AdministratorAccess</em> managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.</p>
-</div>
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/pre-reqs.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>This Quick Start requires a custom AMI provided by SkillNet Solutions Inc. upon request.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_deployment_options">Deployment options</h4>
 <div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/deployment_options.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>This Quick Start provides two deployment options:</p>
 </div>
 <div class="ulist">
@@ -1344,10 +1239,7 @@ Certain Regions are available on an opt-in basis. Refer to the AWS Documentation
 </div>
 <div class="paragraph">
 <p>The Quick Start provides separate templates for these options. It also lets you configure Classless Inter-Domain Routing (CIDR) blocks, instance types, and Oracle Xstore Office settings, as discussed later in this guide.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 </div>
 </div>
@@ -1355,14 +1247,8 @@ Certain Regions are available on an opt-in basis. Refer to the AWS Documentation
 <div class="sect1">
 <h2 id="_deployment_steps">Deployment steps</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/deploy_steps.adoc</code></strong></em></p>
-</div>
-<div id="preview_mode" class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>=== Sign in to your AWS account</p>
-</div>
+<div class="sect2">
+<h3 id="_sign_in_to_your_aws_account">Sign in to your AWS account</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1373,9 +1259,9 @@ Certain Regions are available on an opt-in basis. Refer to the AWS Documentation
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>=== Launch the Quick Start</p>
 </div>
+<div class="sect2">
+<h3 id="_launch_the_quick_start">Launch the Quick Start</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1443,11 +1329,6 @@ If you’re deploying Oracle Xstore Office into an existing VPC, ensure that you
 </li>
 </ol>
 </div>
-</div>
-</div>
-<div class="paragraph">
-<p>In the following tables, parameters are listed by category and described separately for the deployment options. When you finish reviewing and customizing the parameters, choose <strong>Next</strong>.</p>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1461,6 +1342,180 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tr>
 </table>
 </div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>On the <strong>Configure stack options</strong> page, you can <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html" target="_blank" rel="noopener">specify tags</a> (key-value pairs) for resources in your stack and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html" target="_blank" rel="noopener">set advanced options</a>. When you’re finished, choose <strong>Next</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Review</strong> page, review and confirm the template settings. Under <strong>Capabilities</strong>, select the two check boxes to acknowledge that the template creates IAM resources and might require the ability to automatically expand macros.</p>
+</li>
+<li>
+<p>Choose <strong>Create stack</strong> to deploy the stack.</p>
+</li>
+<li>
+<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Oracle Xstore Office deployment is ready.</p>
+</li>
+<li>
+<p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in <a href="#cfn_outputs">Figure 2</a>, to view the created resources.</p>
+</li>
+</ol>
+</div>
+<div id="cfn_outputs" class="imageblock">
+<div class="content">
+<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
+</div>
+<div class="title">Figure 2. Oracle Xstore Office outputs after successful deployment</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_post_deployment_steps">Post-deployment steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Disable the Auto Scaling group for the Oracle WebLogic cluster and Apache Tomcat server.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose the Auto Scaling group for the Oracle WebLogic server.</p>
+</li>
+<li>
+<p>On the <strong>Details</strong> tab, choose the <strong>Edit</strong> button.</p>
+</li>
+<li>
+<p>On the <strong>Suspended processes</strong> list box, select all the processes to suspend.</p>
+</li>
+<li>
+<p>Repeat steps 1–3 for Apache Tomcat server.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storage">Storage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As shown in <a href="#architecture1">Figure 1</a>, Amazon DLM is used to automate the creation, retention, and deletion of snapshots of the Amazon EBS volumes.</p>
+</div>
+<div class="paragraph">
+<p>Amazon DLM is configured as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Uses EC2 tag (name: <strong>LCM_TAG</strong> , value: <strong>XSTORE</strong>) key-value pairs to take snapshots.</p>
+</li>
+<li>
+<p>Retains the most recent three snapshots.</p>
+</li>
+<li>
+<p>Stores a copy of each snapshot in another AWS Region for redundancy.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_infrastructure_monitoring">Infrastructure monitoring</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After implementing your Oracle WebLogic applications in the AWS Cloud, monitor your Oracle WebLogic environment and the deployed application on WebLogic.</p>
+</div>
+<div class="paragraph">
+<p>You can use Fusion Middleware Control, the Oracle WebLogic Server Administration Console, or the command line (using the <a href="https://docs.oracle.com/middleware/1213/wls/WLSTC/reference.htm#WLSTC416" target="_blank" rel="noopener">WSLT state command</a>) to monitor your Oracle WebLogic infrastructure components. This includes WebLogic domains, Managed Servers, and clusters. You can also monitor the Java applications deployed and get information such as the state of your application, the number of active sessions, and response times.</p>
+</div>
+<div class="paragraph">
+<p>For more information about how to monitor Oracle WebLogic, see the <a href="https://www.oracle.com/middleware/technologies/weblogic.html" target="_blank" rel="noopener">Oracle WebLogic Server</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch monitors your AWS resources in real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch  also monitors.</p>
+</div>
+<div class="paragraph">
+<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure an email or SMS notification of the event to be sent through Amazon Simple Notification Service (Amazon SNS). Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support">Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The SkillNet Solutions Inc. support team is standing by to assist you with setting up Oracle Xstore Office on your AWS environment. Send an email to <a href="mailto:support_xstoreoffice@skillnetinc.com">support_xstoreoffice@skillnetinc.com</a> to contact the support team.</p>
+</div>
+<div class="paragraph">
+<p>Automating snapshot management accomplishes the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Protects valuable data by enforcing a regular backup schedule.</p>
+</li>
+<li>
+<p>Retains backups as required by auditors or for internal compliance.</p>
+</li>
+<li>
+<p>Reduces storage costs by deleting outdated backups.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the reference architecture, we use Amazon EFS for shared storage of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>WebLogic binaries</p>
+</li>
+<li>
+<p>Domain configurations</p>
+</li>
+<li>
+<p>Common scripts</p>
+</li>
+<li>
+<p>Logs</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_faq">FAQ</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
+</div>
+<div class="paragraph">
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (In the AWS CloudFormation console, this setting is under <strong>Advanced</strong> on the <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance remains running so you can troubleshoot the issue. (For Windows, look at the log files in '%ProgramFiles%\Amazon\EC2ConfigService' and 'C:\cfn\log'.)</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Ensure to delete the stack when you finish troubleshooting.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For additional information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a> on the AWS website.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q.</strong> I encountered a size limitation error when I deployed the AWS CloudFormation templates.</p>
+</div>
+<div class="paragraph">
+<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parameter_reference">Parameter reference</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_parameters_for_deploying_into_an_existing_vpc">Parameters for deploying into an existing VPC</h3>
 <table class="tableblock frame-all grid-all stretch">
@@ -2012,198 +2067,6 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic" start="5">
-<li>
-<p>On the options page, you can <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html" target="_blank" rel="noopener">specify tags</a> (key-value pairs) for resources in your stack and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html" target="_blank" rel="noopener">set advanced options</a>. When you’re done, choose <strong>Next</strong>.</p>
-</li>
-<li>
-<p>On the <strong>Review</strong> page, review and confirm the template settings. Under <strong>Capabilities</strong>, select the two check boxes to acknowledge that the template creates IAM resources and might require the ability to automatically expand macros.</p>
-</li>
-<li>
-<p>Choose <strong>Create stack</strong> to deploy the stack.</p>
-</li>
-<li>
-<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Oracle Xstore Office deployment is ready.</p>
-</li>
-<li>
-<p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in <a href="#cfn_outputs">Oracle Xstore Office outputs after successful deployment</a>, to view the created resources.</p>
-</li>
-</ol>
-</div>
-<div id="cfn_outputs" class="imageblock">
-<div class="content">
-<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
-</div>
-<div class="title">Figure 2. Oracle Xstore Office outputs after successful deployment</div>
-</div>
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/additional_info.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
-<h2 id="_post_deployment_steps">Post-deployment steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Disable the Auto Scaling group for the Oracle WebLogic cluster and Apache Tomcat server.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Choose the Auto Scaling group for the Oracle WebLogic server.</p>
-</li>
-<li>
-<p>On the <strong>Details</strong> tab, choose the <strong>Edit</strong> button.</p>
-</li>
-<li>
-<p>On the <strong>Suspended processes</strong> list box, select all the processes to suspend.</p>
-</li>
-<li>
-<p>Repeat steps 1–3 for Apache Tomcat server.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_storage">Storage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As shown in <a href="#architecture1">Figure 1</a>, Amazon DLM is used to automate the creation, retention, and deletion of snapshots of the Amazon EBS volumes.</p>
-</div>
-<div class="paragraph">
-<p>Amazon DLM is configured as follows:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Uses EC2 tag (name: <strong>LCM_TAG</strong> , value: <strong>XSTORE</strong>) key-value pairs to take snapshots.</p>
-</li>
-<li>
-<p>Retains the most recent three snapshots.</p>
-</li>
-<li>
-<p>Stores a copy of each snapshot in another AWS Region for redundancy.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_infrastructure_monitoring">Infrastructure monitoring</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After implementing your Oracle WebLogic applications in the AWS Cloud, monitor your Oracle WebLogic environment and the deployed application on WebLogic.</p>
-</div>
-<div class="paragraph">
-<p>You can use Fusion Middleware Control, the Oracle WebLogic Server Administration Console, or the command line (using the <a href="https://docs.oracle.com/middleware/1213/wls/WLSTC/reference.htm#WLSTC416" target="_blank" rel="noopener">WSLT state command</a>) to monitor your Oracle WebLogic infrastructure components. This includes WebLogic domains, Managed Servers, and clusters. You can also monitor the Java applications deployed and get information such as the state of your application, the number of active sessions, and response times.</p>
-</div>
-<div class="paragraph">
-<p>For more information about how to monitor Oracle WebLogic, see the <a href="https://www.oracle.com/middleware/technologies/weblogic.html" target="_blank" rel="noopener">Oracle WebLogic Server</a>.</p>
-</div>
-<div class="paragraph">
-<p>You can also use Amazon CloudWatch to monitor the AWS Cloud resources the applications you run on AWS. Amazon CloudWatch monitors your AWS resources in real-time, including Amazon EC2 instances, Amazon EBS volumes, Amazon EFS, Elastic Load Balancers, and Amazon RDS database instances. Metrics such as CPU utilization, latency, and request counts are provided automatically for these AWS resources. You can also supply your own logs or custom application and system metrics, such as memory usage, transaction volumes, or error rates, which Amazon CloudWatch  also monitors.</p>
-</div>
-<div class="paragraph">
-<p>With Amazon CloudWatch alarms, you can set a threshold on metrics and trigger an action when that threshold is exceeded. For example, you can create an alarm that is triggered when the CPU utilization on an EC2 instance crosses a threshold. You can also configure an email or SMS notification of the event to be sent through Amazon Simple Notification Service (Amazon SNS). Real-time alarms for metrics and events help you to minimize downtime and business impacts.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_support">Support</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The SkillNet Solutions Inc. support team is standing by to assist you with setting up Oracle Xstore Office on your AWS environment. Send an email to <a href="mailto:support_xstoreoffice@skillnetinc.com">support_xstoreoffice@skillnetinc.com</a> to contact the support team.</p>
-</div>
-<div class="paragraph">
-<p>Automating snapshot management accomplishes the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Protects valuable data by enforcing a regular backup schedule.</p>
-</li>
-<li>
-<p>Retains backups as required by auditors or for internal compliance.</p>
-</li>
-<li>
-<p>Reduces storage costs by deleting outdated backups.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In the reference architecture, we use Amazon EFS for shared storage of the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>WebLogic binaries</p>
-</li>
-<li>
-<p>Domain configurations</p>
-</li>
-<li>
-<p>Common scripts</p>
-</li>
-<li>
-<p>Logs</p>
-</li>
-</ul>
-</div>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p><em><strong>This portion of the deployment guide is located at <code>docs/partner_editable/faq_troubleshooting.adoc</code></strong></em></p>
-</div>
-<table id="preview_mode" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
-<h2 id="_faq">FAQ</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
-</div>
-<div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (In the AWS CloudFormation console, this setting is under <strong>Advanced</strong> on the <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance remains running so you can troubleshoot the issue. (For Windows, look at the log files in '%ProgramFiles%\Amazon\EC2ConfigService' and 'C:\cfn\log'.)</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Ensure to delete the stack when you finish troubleshooting.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For additional information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a> on the AWS website.</p>
-</div>
-<div class="paragraph">
-<p><strong>Q.</strong> I encountered a size limitation error when I deployed the AWS CloudFormation templates.</p>
-</div>
-<div class="paragraph">
-<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
-</div>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -2211,7 +2074,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <h2 id="_send_us_feedback">Send us feedback</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To post feedback, submit feature ideas, or report bugs, use the <strong>Issues</strong> section of the <a href="https://github.com/aws-quickstart/quickstart-skillnet-xstoreoffice" target="_blank" rel="noopener">GitHub repository</a> for this Quick Start. If you’d like to submit code, please review the <a href="https://aws-quickstart.github.io/" target="_blank" rel="noopener">Quick Start Contributor’s Guide</a>.</p>
+<p>To post feedback, submit feature ideas, or report bugs, use the <strong>Issues</strong> section of the <a href="https://github.com/aws-quickstart/quickstart-skillnet-xstoreoffice" target="_blank" rel="noopener">GitHub repository</a> for this Quick Start. To submit code, see the <a href="https://aws-quickstart.github.io/" target="_blank" rel="noopener">Quick Start Contributor’s Guide</a>.</p>
 </div>
 </div>
 </div>
@@ -2227,16 +2090,16 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <h2 id="_github_repository">GitHub repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can visit our <a href="https://github.com/aws-quickstart/quickstart-skillnet-xstoreoffice" target="_blank" rel="noopener">GitHub repository</a> to download
+<p>Visit our <a href="https://github.com/aws-quickstart/quickstart-skillnet-xstoreoffice" target="_blank" rel="noopener">GitHub repository</a> to download
 the templates and scripts for this Quick Start, to post your comments,
 and to share your customizations with others.</p>
 </div>
 <hr>
-<div class="paragraph">
-<p>© 2020, Amazon Web Services Inc., or its affiliates, and SkillNet Solutions Inc.. All rights reserved.</p>
 </div>
-<div class="sect3">
-<h4 id="_notices">Notices</h4>
+</div>
+<div class="sect1">
+<h2 id="_notices">Notices</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This document is provided for informational purposes only. It represents AWS’s current product offerings and practices as of the date of issue of this document, which are subject to change without notice. Customers are responsible for making their own independent assessment of the information in this document and any use of AWS’s products or services, each of which is provided “as is” without warranty of any kind, whether expressed or implied. This document does not create any warranties, representations, contractual commitments, conditions, or assurances from AWS, its affiliates, suppliers, or licensors. The responsibilities and liabilities of AWS to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers.</p>
 </div>
@@ -2246,11 +2109,10 @@ and to share your customizations with others.</p>
 </div>
 </div>
 </div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2020-10-23 15:30:49 UTC
-</div>
-</div>
+<p class="footer-text">
+<!-- We can use document attributes: -->
+<!-- Generated with Asciidoctor v2.0.10. -->
+<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates and SkillNet Solutions Inc.. All rights reserved.
+</p>
 </body>
 </html>
